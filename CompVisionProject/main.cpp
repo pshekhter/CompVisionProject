@@ -17,7 +17,6 @@ struct VIDEODATA {
 
 cv::Mat currentFrameColor;
 cv::Mat currentFrameGry;
-std::string report;
 
 
 /*
@@ -52,6 +51,8 @@ std::string report;
  }
 
 int main(int argc, char** argv) {
+
+	std::string report;
 
 	std::ofstream file;
 	
