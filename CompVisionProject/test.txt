@@ -2,3 +2,5 @@ Edge Detection Analysis Data:
 Report file name: test.txt
 
 
+There was an error in processing. Error Code: -1
+This means: Error loading file.
