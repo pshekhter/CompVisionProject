@@ -12,6 +12,7 @@
 #include <string>
 #include <fstream>
 #include <thread>
+#include <functional>
 #include "main.h"
 
 struct IMAGEDATA {
@@ -70,13 +71,10 @@ struct IMAGEDATA {
 	Parses the arguments from the command line.
 	- Pavel Shekhter
 */
- int parseArguments(int argc, char ** argv, std::ofstream &file, bool &retflag)
+ int parseArguments(int argc, char * argv, std::ofstream &file, bool &retflag)
  {
 	 retflag = true;
-	 std::string keys = "{@image         |          | image to scan}";
-
-	 cv::CommandLineParser parser(argc, argv, keys);
-	 std::string imagefile = parser.get<std::string>("@image");
+	 std::string imagefile(argv);
 
 	 if (!imagefile.empty()) {
 		 IMAGEDATA id = readImageData(imagefile);
@@ -87,6 +85,9 @@ struct IMAGEDATA {
 			 return -1;
 		 }
 	 }
+
+	 file << "Processing File: " << argv << std::endl;
+
 	 retflag = false;
 	 return {};
  }
@@ -95,19 +96,26 @@ struct IMAGEDATA {
 	Performs a Canny edge detector using Gaussian blur.
 	- Pavel Shekhter
  */
- cv::Mat gaussianCanny() {
+ void gaussianCanny(std::ofstream &file, char * argv, cv::Mat mat) {
+	 file << "Starting Canny w/Gaussian Blur. Initial Time: ";
+	 double initGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
+	 file << initGCTime * 1000 << " ms" << std::endl;
 	 cv::blur(id.currentFrameGry, id.currentFrameGry, cv::Size(3, 3));
 	 cv::Canny(id.cannyGaussianDetectedEdges, id.cannyGaussianDetectedEdges, id.lowThresh, id.lowThresh * id.ratio, id.kernel);
 	 cv::Mat dst;
 	 dst = cv::Scalar::all(0);
 	 id.currentFrameColor.copyTo(dst, id.cannyGaussianDetectedEdges);
-	 return dst;
+	 file << "Canny w/Gaussian Blur finished. Final Time: ";
+	 double finalGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
+	 file << finalGCTime * 1000 << " ms" << std::endl;
+	 file << "Canny w/Gaussian Blur took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
+	 mat = dst;
 }
 
- int main(int argc, char** argv) {
+ int main(int argc, char* argv[]) {
 	 std::ofstream file;
 
-	if (argc != 2) {
+	if (!(argc > 1)) {
 		std::cout << "Usage: CompVisionProject imageToLoad" << std::endl;
 		appendErrorMessage(std::cout, -2);
 		return -2;
@@ -122,19 +130,31 @@ struct IMAGEDATA {
 
 	setUpFile(file, report);
 
-	bool retflag;
-	int retval = parseArguments(argc, argv, file, retflag);
-	if (retflag) return retval;
+	for (int i = 1; i < argc; i++) {
+		bool retflag;
+		int retval = parseArguments(argc, argv[i], file, retflag);
+		if (retflag) return retval;
 
-	cv::namedWindow("Computer Vision Demo", CV_WINDOW_AUTOSIZE);
-	cv::imshow("Computer Vision Demo", id.currentFrameColor);
-	cv::cvtColor(id.currentFrameColor, id.currentFrameGry, cv::COLOR_BGR2GRAY);
+		cv::namedWindow("Computer Vision Demo", CV_WINDOW_AUTOSIZE);
+		cv::imshow("Computer Vision Demo", id.currentFrameColor);
+		cv::cvtColor(id.currentFrameColor, id.currentFrameGry, cv::COLOR_BGR2GRAY);
 
-	cv::Mat det = gaussianCanny();
-	cv::namedWindow("Gaussian", 1);
-	cv::imshow("Gaussian", det);
+		cv::Mat gaussCannyDet;
+		bool isGCDone = false;
+		std::thread gaussCanny(&gaussianCanny, std::ref(file), argv[1], std::ref(gaussCannyDet));
+		if (gaussCanny.joinable()) {
+			gaussCanny.join();
+			isGCDone = true;
+		}
 
-	cv::waitKey(0);
+		if (!gaussCannyDet.empty() || isGCDone == true) {
+			cv::namedWindow("Gaussian", 1);
+			cv::imwrite("../../images/gaussian_" + report, gaussCannyDet);
+		}
+
+		cv::waitKey(0);
+
+	}
 
 	file.close();
 
