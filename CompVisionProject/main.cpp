@@ -13,6 +13,8 @@
 #include <fstream>
 #include <thread>
 #include <functional>
+#include <vector>
+#include <boost/filesystem.hpp>
 #include "main.h"
 
 struct IMAGEDATA {
@@ -64,6 +66,10 @@ struct IMAGEDATA {
 			 file << "Improper loading." << std::endl;
 			 break;
 		 }
+		 case -3: {
+			 file << "Unable to output to image." << std::endl;
+			 break;
+		 }
 	 }
  }
 
@@ -96,15 +102,15 @@ struct IMAGEDATA {
 	Performs a Canny edge detector using Gaussian blur.
 	- Pavel Shekhter
  */
- void gaussianCanny(std::ofstream &file, char * argv, cv::Mat mat) {
+ void gaussianCanny(std::ofstream &file, char * argv, cv::Mat &mat) {
 	 file << "Starting Canny w/Gaussian Blur. Initial Time: ";
 	 double initGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << initGCTime * 1000 << " ms" << std::endl;
-	 cv::blur(id.currentFrameGry, id.currentFrameGry, cv::Size(3, 3));
+	 cv::blur(id.currentFrameGry, id.cannyGaussianDetectedEdges, cv::Size(3, 3));
 	 cv::Canny(id.cannyGaussianDetectedEdges, id.cannyGaussianDetectedEdges, id.lowThresh, id.lowThresh * id.ratio, id.kernel);
 	 cv::Mat dst;
 	 dst = cv::Scalar::all(0);
-	 id.currentFrameColor.copyTo(dst, id.cannyGaussianDetectedEdges);
+	 id.currentFrameGry.copyTo(dst, id.cannyGaussianDetectedEdges);
 	 file << "Canny w/Gaussian Blur finished. Final Time: ";
 	 double finalGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << finalGCTime * 1000 << " ms" << std::endl;
@@ -141,17 +147,35 @@ struct IMAGEDATA {
 
 		cv::Mat gaussCannyDet;
 		bool isGCDone = false;
-		std::thread gaussCanny(&gaussianCanny, std::ref(file), argv[1], std::ref(gaussCannyDet));
+		std::thread gaussCanny(&gaussianCanny, std::ref(file), argv[i], std::ref(gaussCannyDet));
 		if (gaussCanny.joinable()) {
 			gaussCanny.join();
 			isGCDone = true;
 		}
 
 		if (!gaussCannyDet.empty() || isGCDone == true) {
-			cv::namedWindow("Gaussian", 1);
-			cv::imwrite("../../images/gaussian_" + report, gaussCannyDet);
+			std::vector<int> comp_params;
+			comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
+			comp_params.push_back(100);
+			std::string im = argv[i];
+			boost::filesystem::path image_path(im);
+			if (boost::filesystem::exists(image_path)) {
+				std::string imp = image_path.filename().generic_string();
+				try {
+					bool save = cv::imwrite("gaussian_" + imp, gaussCannyDet, comp_params);
+				}
+				catch (std::runtime_error& e) {
+					appendErrorMessage(file, -3);
+					fprintf(stderr, "Unable to write file due to: %s\n", e.what());
+				}
+			}
 		}
 
+		if (!gaussCannyDet.empty()) {
+			cv::namedWindow("Canny: Gaussian");
+			cv::imshow("Canny: Gaussian", gaussCannyDet);
+		}
+		
 		cv::waitKey(0);
 
 	}
