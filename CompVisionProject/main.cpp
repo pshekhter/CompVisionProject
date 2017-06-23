@@ -1,6 +1,6 @@
 /*
 	This project is being developed for the CMSC-498 - Senior Seminar Fall 2017 semester at Chestnut Hill College in Philadelphia, PA.
-	The purpose is to test the accuracy and efficiency of the Canny edge detector given different filters, using the Laplacian of Gaussian and Hough
+	The purpose is to test the accuracy and efficiency of the Canny, Sobel, and Scharr edge detectors, using the Laplacian of Gaussian and Hough
 	pseudo-wavelet as benchmarks.
 	- Pavel Shekhter
 */
@@ -21,9 +21,10 @@ struct IMAGEDATA {
 	cv::Mat currentFrameColor;
 	cv::Mat currentFrameGry;
 	cv::Mat cannyGaussianDetectedEdges;
-	int lowThresh;
-	int ratio = 3;
-	int kernel = 3;
+	cv::Mat cannyNormalizedDetectedEdges;
+	int canny_lowThresh;
+	int canny_Ratio = 3;
+	int canny_Kernel = 3;
 } id;
 
 
@@ -106,8 +107,8 @@ struct IMAGEDATA {
 	 file << "Starting Canny w/Gaussian Blur. Initial Time: ";
 	 double initGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << initGCTime * 1000 << " ms" << std::endl;
-	 cv::blur(id.currentFrameGry, id.cannyGaussianDetectedEdges, cv::Size(3, 3));
-	 cv::Canny(id.cannyGaussianDetectedEdges, id.cannyGaussianDetectedEdges, id.lowThresh, id.lowThresh * id.ratio, id.kernel);
+	 cv::GaussianBlur(id.currentFrameGry, id.cannyGaussianDetectedEdges, cv::Size(3, 3), 0, 0, cv::BORDER_DEFAULT);
+	 cv::Canny(id.cannyGaussianDetectedEdges, id.cannyGaussianDetectedEdges, id.canny_lowThresh, id.canny_lowThresh * id.canny_Ratio, id.canny_Kernel);
 	 cv::Mat dst;
 	 dst = cv::Scalar::all(0);
 	 id.currentFrameGry.copyTo(dst, id.cannyGaussianDetectedEdges);
@@ -117,6 +118,26 @@ struct IMAGEDATA {
 	 file << "Canny w/Gaussian Blur took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
 	 mat = dst;
 }
+
+ /*
+ Performs a Canny edge detector using normalized box blur.
+ - Pavel Shekhter
+ */
+ void normalizedCanny(std::ofstream &file, char * argv, cv::Mat &mat) {
+	 file << "Starting Canny w/Normalized Box Blur. Initial Time: ";
+	 double initGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
+	 file << initGCTime * 1000 << " ms" << std::endl;
+	 cv::blur(id.currentFrameGry, id.cannyNormalizedDetectedEdges, cv::Size(3, 3));
+	 cv::Canny(id.cannyNormalizedDetectedEdges, id.cannyNormalizedDetectedEdges, id.canny_lowThresh, id.canny_lowThresh * id.canny_Ratio, id.canny_Kernel);
+	 cv::Mat dst;
+	 dst = cv::Scalar::all(0);
+	 id.currentFrameGry.copyTo(dst, id.cannyNormalizedDetectedEdges);
+	 file << "Canny w/Normalized Box Blur finished. Final Time: ";
+	 double finalGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
+	 file << finalGCTime * 1000 << " ms" << std::endl;
+	 file << "Canny w/Normalized Box Blur took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
+	 mat = dst;
+ }
 
  int main(int argc, char* argv[]) {
 	 std::ofstream file;
@@ -141,7 +162,7 @@ struct IMAGEDATA {
 		int retval = parseArguments(argc, argv[i], file, retflag);
 		if (retflag) return retval;
 
-		cv::namedWindow("Computer Vision Demo", CV_WINDOW_AUTOSIZE);
+		cv::namedWindow("Computer Vision Demo", CV_WINDOW_NORMAL);
 		cv::imshow("Computer Vision Demo", id.currentFrameColor);
 		cv::cvtColor(id.currentFrameColor, id.currentFrameGry, cv::COLOR_BGR2GRAY);
 
@@ -172,10 +193,42 @@ struct IMAGEDATA {
 		}
 
 		if (!gaussCannyDet.empty()) {
-			cv::namedWindow("Canny: Gaussian");
+			cv::namedWindow("Canny: Gaussian", CV_WINDOW_NORMAL);
 			cv::imshow("Canny: Gaussian", gaussCannyDet);
 		}
+
+		cv::Mat normalizedCannyDet;
+		bool isNCDone = false;
+		std::thread normCanny(&normalizedCanny, std::ref(file), argv[i], std::ref(normalizedCannyDet));
+		if (normCanny.joinable()) {
+			normCanny.join();
+			isNCDone = true;
+		}
+
+		if (!normalizedCannyDet.empty() || isNCDone == true) {
+			std::vector<int> comp_params;
+			comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
+			comp_params.push_back(100);
+			std::string im = argv[i];
+			boost::filesystem::path image_path(im);
+			if (boost::filesystem::exists(image_path)) {
+				std::string imp = image_path.filename().generic_string();
+				try {
+					bool save = cv::imwrite("normalized_box_" + imp, normalizedCannyDet, comp_params);
+				}
+				catch (std::runtime_error& e) {
+					appendErrorMessage(file, -3);
+					fprintf(stderr, "Unable to write file due to: %s\n", e.what());
+				}
+			}
+		}
+
+		if (!normalizedCannyDet.empty()) {
+			cv::namedWindow("Canny: Normalized Box", CV_WINDOW_NORMAL);
+			cv::imshow("Canny: Normalized Box", gaussCannyDet);
+		}
 		
+		printf("Finished running edge detection. Press Esc to quit. Images and report will be found in folder where CompVisionDemo.exe is located.\n");
 		cv::waitKey(0);
 
 	}

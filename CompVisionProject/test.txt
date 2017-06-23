@@ -2,7 +2,10 @@ Edge Detection Analysis Data:
 Report file name: test.txt
 
 
-Processing File: C:\Users\iGenius\Documents\Visual Studio 2017\Projects\CompVisionProject\CompVisionProject\lena.jpg
-Starting Canny w/Gaussian Blur. Initial Time: 1.56166e+08 ms
-Canny w/Gaussian Blur finished. Final Time: 1.56166e+08 ms
-Canny w/Gaussian Blur took 4.08256 ms to complete.
+Processing File: lena.jpg
+Starting Canny w/Gaussian Blur. Initial Time: 2.30125e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 2.30125e+08 ms
+Canny w/Gaussian Blur took 4.37655 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 2.30125e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 2.30125e+08 ms
+Canny w/Normalized Box Blur took 3.82188 ms to complete.
