@@ -1,0 +1,69 @@
+Edge Detection Analysis Data: 
+Report file name: output_test.txt
+
+
+Starting trial 0
+Processing File: lena.jpg
+Starting Canny w/Gaussian Blur. Initial Time: 1.36938e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.36938e+08 ms
+Canny w/Gaussian Blur took 66.0808 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.36938e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.36938e+08 ms
+Canny w/Normalized Box Blur took 5.05103 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.36938e+08 ms
+Canny w/Box Filter finished. Final Time: 1.36938e+08 ms
+Canny w/Box Filter took 2.72716 ms to complete.
+Trial #0ended.
+
+Starting trial 1
+Processing File: lena.jpg
+Starting Canny w/Gaussian Blur. Initial Time: 1.3694e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.3694e+08 ms
+Canny w/Gaussian Blur took 2.81425 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.3694e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.3694e+08 ms
+Canny w/Normalized Box Blur took 2.54364 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.3694e+08 ms
+Canny w/Box Filter finished. Final Time: 1.3694e+08 ms
+Canny w/Box Filter took 2.57783 ms to complete.
+Trial #1ended.
+
+Starting trial 2
+Processing File: lena.jpg
+Starting Canny w/Gaussian Blur. Initial Time: 1.36943e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.36943e+08 ms
+Canny w/Gaussian Blur took 2.74703 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.36943e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.36943e+08 ms
+Canny w/Normalized Box Blur took 2.624 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.36943e+08 ms
+Canny w/Box Filter finished. Final Time: 1.36943e+08 ms
+Canny w/Box Filter took 2.76983 ms to complete.
+Trial #2ended.
+
+Starting trial 3
+Processing File: lena.jpg
+Starting Canny w/Gaussian Blur. Initial Time: 1.36943e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.36943e+08 ms
+Canny w/Gaussian Blur took 2.79934 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.36944e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.36944e+08 ms
+Canny w/Normalized Box Blur took 2.55007 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.36944e+08 ms
+Canny w/Box Filter finished. Final Time: 1.36944e+08 ms
+Canny w/Box Filter took 2.64066 ms to complete.
+Trial #3ended.
+
+Starting trial 4
+Processing File: lena.jpg
+Starting Canny w/Gaussian Blur. Initial Time: 1.36944e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.36944e+08 ms
+Canny w/Gaussian Blur took 2.74002 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.36944e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.36944e+08 ms
+Canny w/Normalized Box Blur took 2.5486 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.36944e+08 ms
+Canny w/Box Filter finished. Final Time: 1.36944e+08 ms
+Canny w/Box Filter took 2.64417 ms to complete.
+Trial #4ended.
+

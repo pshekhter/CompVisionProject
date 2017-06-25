@@ -139,7 +139,29 @@ struct IMAGEDATA {
 	 mat = dst;
  }
 
+ /*
+ Performs a Canny edge detector using box filter.
+ - Pavel Shekhter
+ */
+ void boxCanny(std::ofstream &file, char * argv, cv::Mat &mat) {
+	 file << "Starting Canny w/Box Filter. Initial Time: ";
+	 double initGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
+	 file << initGCTime * 1000 << " ms" << std::endl;
+	 cv::boxFilter(id.currentFrameGry, id.cannyNormalizedDetectedEdges, -1, cv::Size(3, 3), cv::Point(-1, -1), true, cv::BORDER_DEFAULT);
+	 cv::Canny(id.cannyNormalizedDetectedEdges, id.cannyNormalizedDetectedEdges, id.canny_lowThresh, id.canny_lowThresh * id.canny_Ratio, id.canny_Kernel);
+	 cv::Mat dst;
+	 dst = cv::Scalar::all(0);
+	 id.currentFrameGry.copyTo(dst, id.cannyNormalizedDetectedEdges);
+	 file << "Canny w/Box Filter finished. Final Time: ";
+	 double finalGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
+	 file << finalGCTime * 1000 << " ms" << std::endl;
+	 file << "Canny w/Box Filter took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
+	 mat = dst;
+ }
+
  int main(int argc, char* argv[]) {
+	 int cycles = 0;
+	 std::string cyclesString;
 	 std::ofstream file;
 
 	if (!(argc > 1)) {
@@ -153,84 +175,125 @@ struct IMAGEDATA {
 	std::cout << "Enter report file name: " << std::endl;
 	getline(std::cin, report);
 
+	std::cout << "How many trials do you want?" << std::endl;
+	getline(std::cin, cyclesString);
+	cycles = std::stoi(cyclesString);
+
 	file.open(report);
 
 	setUpFile(file, report);
 
-	for (int i = 1; i < argc; i++) {
-		bool retflag;
-		int retval = parseArguments(argc, argv[i], file, retflag);
-		if (retflag) return retval;
+	for (int trial = 0; trial < cycles; ++trial) {
+		file << "Starting trial " << trial << std::endl;
+		for (int i = 1; i < argc; i++) {
+			bool retflag;
+			int retval = parseArguments(argc, argv[i], file, retflag);
+			if (retflag) return retval;
 
-		cv::namedWindow("Computer Vision Demo", CV_WINDOW_NORMAL);
-		cv::imshow("Computer Vision Demo", id.currentFrameColor);
-		cv::cvtColor(id.currentFrameColor, id.currentFrameGry, cv::COLOR_BGR2GRAY);
+			cv::namedWindow("Computer Vision Demo", CV_WINDOW_NORMAL);
+			cv::imshow("Computer Vision Demo", id.currentFrameColor);
+			cv::cvtColor(id.currentFrameColor, id.currentFrameGry, cv::COLOR_BGR2GRAY);
 
-		cv::Mat gaussCannyDet;
-		bool isGCDone = false;
-		std::thread gaussCanny(&gaussianCanny, std::ref(file), argv[i], std::ref(gaussCannyDet));
-		if (gaussCanny.joinable()) {
-			gaussCanny.join();
-			isGCDone = true;
-		}
+			cv::Mat gaussCannyDet;
+			bool isGCDone = false;
+			std::thread gaussCanny(&gaussianCanny, std::ref(file), argv[i], std::ref(gaussCannyDet));
+			if (gaussCanny.joinable()) {
+				gaussCanny.join();
+				isGCDone = true;
+			}
 
-		if (!gaussCannyDet.empty() || isGCDone == true) {
-			std::vector<int> comp_params;
-			comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
-			comp_params.push_back(100);
-			std::string im = argv[i];
-			boost::filesystem::path image_path(im);
-			if (boost::filesystem::exists(image_path)) {
-				std::string imp = image_path.filename().generic_string();
-				try {
-					bool save = cv::imwrite("gaussian_" + imp, gaussCannyDet, comp_params);
-				}
-				catch (std::runtime_error& e) {
-					appendErrorMessage(file, -3);
-					fprintf(stderr, "Unable to write file due to: %s\n", e.what());
+			if (!gaussCannyDet.empty() || isGCDone == true) {
+				std::vector<int> comp_params;
+				comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
+				comp_params.push_back(100);
+				std::string im = argv[i];
+				boost::filesystem::path image_path(im);
+				if (boost::filesystem::exists(image_path)) {
+					std::string imp = image_path.filename().generic_string();
+					try {
+						bool save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_gaussian_" + imp, gaussCannyDet, comp_params);
+					}
+					catch (std::runtime_error& e) {
+						appendErrorMessage(file, -3);
+						fprintf(stderr, "Unable to write file due to: %s\n", e.what());
+					}
 				}
 			}
-		}
 
-		if (!gaussCannyDet.empty()) {
-			cv::namedWindow("Canny: Gaussian", CV_WINDOW_NORMAL);
-			cv::imshow("Canny: Gaussian", gaussCannyDet);
-		}
+			if (!gaussCannyDet.empty()) {
+				cv::namedWindow("Canny: Gaussian", CV_WINDOW_NORMAL);
+				cv::imshow("Canny: Gaussian", gaussCannyDet);
+			}
 
-		cv::Mat normalizedCannyDet;
-		bool isNCDone = false;
-		std::thread normCanny(&normalizedCanny, std::ref(file), argv[i], std::ref(normalizedCannyDet));
-		if (normCanny.joinable()) {
-			normCanny.join();
-			isNCDone = true;
-		}
+			cv::Mat normalizedCannyDet;
+			bool isNCDone = false;
+			std::thread normCanny(&normalizedCanny, std::ref(file), argv[i], std::ref(normalizedCannyDet));
+			if (normCanny.joinable()) {
+				normCanny.join();
+				isNCDone = true;
+			}
 
-		if (!normalizedCannyDet.empty() || isNCDone == true) {
-			std::vector<int> comp_params;
-			comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
-			comp_params.push_back(100);
-			std::string im = argv[i];
-			boost::filesystem::path image_path(im);
-			if (boost::filesystem::exists(image_path)) {
-				std::string imp = image_path.filename().generic_string();
-				try {
-					bool save = cv::imwrite("normalized_box_" + imp, normalizedCannyDet, comp_params);
-				}
-				catch (std::runtime_error& e) {
-					appendErrorMessage(file, -3);
-					fprintf(stderr, "Unable to write file due to: %s\n", e.what());
+			if (!normalizedCannyDet.empty() || isNCDone == true) {
+				std::vector<int> comp_params;
+				comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
+				comp_params.push_back(100);
+				std::string im = argv[i];
+				boost::filesystem::path image_path(im);
+				if (boost::filesystem::exists(image_path)) {
+					std::string imp = image_path.filename().generic_string();
+					try {
+						bool save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_normalized_box_" + imp, normalizedCannyDet, comp_params);
+					}
+					catch (std::runtime_error& e) {
+						appendErrorMessage(file, -3);
+						fprintf(stderr, "Unable to write file due to: %s\n", e.what());
+					}
 				}
 			}
-		}
 
-		if (!normalizedCannyDet.empty()) {
-			cv::namedWindow("Canny: Normalized Box", CV_WINDOW_NORMAL);
-			cv::imshow("Canny: Normalized Box", gaussCannyDet);
-		}
-		
-		printf("Finished running edge detection. Press Esc to quit. Images and report will be found in folder where CompVisionDemo.exe is located.\n");
-		cv::waitKey(0);
+			if (!normalizedCannyDet.empty()) {
+				cv::namedWindow("Canny: Normalized Box", CV_WINDOW_NORMAL);
+				cv::imshow("Canny: Normalized Box", gaussCannyDet);
+			}
 
+
+			cv::Mat boxCannyDet;
+			bool isBoxDone = false;
+			std::thread boxCanny(&boxCanny, std::ref(file), argv[i], std::ref(boxCannyDet));
+			if (boxCanny.joinable()) {
+				boxCanny.join();
+				isBoxDone = true;
+			}
+
+			if (!boxCannyDet.empty() || isBoxDone == true) {
+				std::vector<int> comp_params;
+				comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
+				comp_params.push_back(100);
+				std::string im = argv[i];
+				boost::filesystem::path image_path(im);
+				if (boost::filesystem::exists(image_path)) {
+					std::string imp = image_path.filename().generic_string();
+					try {
+						bool save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_box_" + imp, normalizedCannyDet, comp_params);
+					}
+					catch (std::runtime_error& e) {
+						appendErrorMessage(file, -3);
+						fprintf(stderr, "Unable to write file due to: %s\n", e.what());
+					}
+				}
+			}
+
+			if (!boxCannyDet.empty()) {
+				cv::namedWindow("Canny: Box Filter", CV_WINDOW_NORMAL);
+				cv::imshow("Canny: Box Filter", boxCannyDet);
+			}
+
+
+			printf("Finished running edge detection. Press Esc to quit. Images and report will be found in folder where CompVisionDemo.exe is located.\n");
+			cv::waitKey(0);
+
+		}
+		file << "Trial #" << trial << " ended.\n" << std::endl;
 	}
 
 	file.close();

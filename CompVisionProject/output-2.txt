@@ -1,0 +1,14 @@
+Edge Detection Analysis Data: 
+Report file name: output-2.txt
+
+
+Processing File: lena.jpg
+Starting Canny w/Gaussian Blur. Initial Time: 1.36125e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.36125e+08 ms
+Canny w/Gaussian Blur took 4.44026 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.36125e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.36125e+08 ms
+Canny w/Normalized Box Blur took 3.79032 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.36125e+08 ms
+Canny w/Box Filter finished. Final Time: 1.36125e+08 ms
+Canny w/Box Filter took 3.82101 ms to complete.
