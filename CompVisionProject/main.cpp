@@ -22,9 +22,14 @@ struct IMAGEDATA {
 	cv::Mat currentFrameGry;
 	cv::Mat cannyGaussianDetectedEdges;
 	cv::Mat cannyNormalizedDetectedEdges;
+	cv::Mat laplaceDest;
 	int canny_lowThresh;
 	int canny_Ratio = 3;
 	int canny_Kernel = 3;
+	int laplace_kernel = 3;
+	int laplace_scale = 1;
+	int laplace_delta = 0;
+	int laplace_ddepth = CV_16S;
 } id;
 
 
@@ -159,6 +164,218 @@ struct IMAGEDATA {
 	 mat = dst;
  }
 
+ /*
+Performs a Laplacian edge detector using Gausian filter.
+- Pavel Shekhter
+ */
+ void gausianLaplace(std::ofstream &file, char * argv, cv::Mat &mat) {
+	 file << "Starting Laplacian w/ Gaussian Blur. Initial time: ";
+	 double initGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
+	 file << initGCTime * 1000 << " ms" << std::endl;
+	 cv::GaussianBlur(id.currentFrameColor, id.currentFrameColor, cv::Size(3, 3), 0, 0, cv::BORDER_DEFAULT);
+	 cv::cvtColor(id.currentFrameColor, id.currentFrameGry, cv::COLOR_RGB2GRAY);
+	 cv::Mat abs_dst;
+	 cv::Laplacian(id.currentFrameGry, mat, id.laplace_ddepth, id.laplace_kernel, id.laplace_scale, id.laplace_delta, cv::BORDER_DEFAULT);
+	 cv::convertScaleAbs(mat, abs_dst);
+	 mat = abs_dst;
+	 id.laplaceDest = abs_dst;
+	 file << "Laplacian w/ Gaussian Blur finished. Final Time: ";
+	 double finalGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
+	 file << finalGCTime * 1000 << " ms" << std::endl;
+	 file << "Laplacian w/ Gaussian Blur took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
+ }
+
+ /*
+ Performs a Laplacian edge detector using normalized box blur.
+ - Pavel Shekhter
+ */
+ void normalizedLaplace(std::ofstream &file, char * argv, cv::Mat &mat) {
+	 file << "Starting Laplacian w/ Normalized Box Blur. Initial time: ";
+	 double initGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
+	 file << initGCTime * 1000 << " ms" << std::endl;
+	 cv::blur(id.currentFrameColor, id.currentFrameColor, cv::Size(3, 3));
+	 cv::cvtColor(id.currentFrameColor, id.currentFrameGry, cv::COLOR_RGB2GRAY);
+	 cv::Mat abs_dst;
+	 cv::Laplacian(id.currentFrameGry, mat, id.laplace_ddepth, id.laplace_kernel, id.laplace_scale, id.laplace_delta, cv::BORDER_DEFAULT);
+	 cv::convertScaleAbs(mat, abs_dst);
+	 mat = abs_dst;
+	 id.laplaceDest = abs_dst;
+	 file << "Laplacian w/ Normalized Box Blur finished. Final Time: ";
+	 double finalGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
+	 file << finalGCTime * 1000 << " ms" << std::endl;
+	 file << "Laplacian w/ Normalized Box Blur took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
+ }
+
+ /*
+ Perform the Canny edge detector trials.
+ - Pavel Shekhter
+ */
+ void cannyTrial(std::ofstream &file, char ** argv, int i, int trial)
+ {
+	 cv::Mat gaussCannyDet;
+	 bool isGCDone = false;
+	 std::thread gaussCanny(&gaussianCanny, std::ref(file), argv[i], std::ref(gaussCannyDet));
+	 if (gaussCanny.joinable()) {
+		 gaussCanny.join();
+		 isGCDone = true;
+	 }
+
+	 if (!gaussCannyDet.empty() || isGCDone == true) {
+		 std::vector<int> comp_params;
+		 comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
+		 comp_params.push_back(100);
+		 std::string im = argv[i];
+		 boost::filesystem::path image_path(im);
+		 if (boost::filesystem::exists(image_path)) {
+			 std::string imp = image_path.filename().generic_string();
+			 try {
+				 bool save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_gaussian_" + imp, gaussCannyDet, comp_params);
+			 }
+			 catch (std::runtime_error& e) {
+				 appendErrorMessage(file, -3);
+				 fprintf(stderr, "Unable to write file due to: %s\n", e.what());
+			 }
+		 }
+	 }
+
+	 if (!gaussCannyDet.empty()) {
+		 cv::namedWindow("Canny: Gaussian", CV_WINDOW_NORMAL);
+		 cv::imshow("Canny: Gaussian", gaussCannyDet);
+	 }
+
+	 cv::Mat normalizedCannyDet;
+	 bool isNCDone = false;
+	 std::thread normCanny(&normalizedCanny, std::ref(file), argv[i], std::ref(normalizedCannyDet));
+	 if (normCanny.joinable()) {
+		 normCanny.join();
+		 isNCDone = true;
+	 }
+
+	 if (!normalizedCannyDet.empty() || isNCDone == true) {
+		 std::vector<int> comp_params;
+		 comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
+		 comp_params.push_back(100);
+		 std::string im = argv[i];
+		 boost::filesystem::path image_path(im);
+		 if (boost::filesystem::exists(image_path)) {
+			 std::string imp = image_path.filename().generic_string();
+			 try {
+				 bool save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_normalized_box_" + imp, normalizedCannyDet, comp_params);
+			 }
+			 catch (std::runtime_error& e) {
+				 appendErrorMessage(file, -3);
+				 fprintf(stderr, "Unable to write file due to: %s\n", e.what());
+			 }
+		 }
+	 }
+
+	 if (!normalizedCannyDet.empty()) {
+		 cv::namedWindow("Canny: Normalized Box", CV_WINDOW_NORMAL);
+		 cv::imshow("Canny: Normalized Box", gaussCannyDet);
+	 }
+
+
+	 cv::Mat boxCannyDet;
+	 bool isBoxDone = false;
+	 std::thread boxCanny(&boxCanny, std::ref(file), argv[i], std::ref(boxCannyDet));
+	 if (boxCanny.joinable()) {
+		 boxCanny.join();
+		 isBoxDone = true;
+	 }
+
+	 if (!boxCannyDet.empty() || isBoxDone == true) {
+		 std::vector<int> comp_params;
+		 comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
+		 comp_params.push_back(100);
+		 std::string im = argv[i];
+		 boost::filesystem::path image_path(im);
+		 if (boost::filesystem::exists(image_path)) {
+			 std::string imp = image_path.filename().generic_string();
+			 try {
+				 bool save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_box_" + imp, normalizedCannyDet, comp_params);
+			 }
+			 catch (std::runtime_error& e) {
+				 appendErrorMessage(file, -3);
+				 fprintf(stderr, "Unable to write file due to: %s\n", e.what());
+			 }
+		 }
+	 }
+
+	 if (!boxCannyDet.empty()) {
+		 cv::namedWindow("Canny: Box Filter", CV_WINDOW_NORMAL);
+		 cv::imshow("Canny: Box Filter", boxCannyDet);
+	 }
+ }
+
+ /*
+ Perform the Laplacian edge detector trials.
+ - Pavel Shekhter
+ */
+ void laplaceTrial(std::ofstream &file, char ** argv, int i, int trial) {
+
+	 cv::Mat gaussLaplaceDet;
+	 bool isGLDone = false;
+	 std::thread gaussLaplace(&gausianLaplace, std::ref(file), argv[i], std::ref(gaussLaplaceDet));
+	 if (gaussLaplace.joinable()) {
+		 gaussLaplace.join();
+		 isGLDone = true;
+	 }
+
+	 if (!gaussLaplaceDet.empty() || isGLDone == true) {
+		 std::vector<int> comp_params;
+		 comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
+		 comp_params.push_back(100);
+		 std::string im = argv[i];
+		 boost::filesystem::path image_path(im);
+		 if (boost::filesystem::exists(image_path)) {
+			 std::string imp = image_path.filename().generic_string();
+			 try {
+				 bool save = cv::imwrite("trial_" + std::to_string(trial) + "_laplace_gaussian_" + imp, gaussLaplaceDet, comp_params);
+			 }
+			 catch (std::runtime_error& e) {
+				 appendErrorMessage(file, -3);
+				 fprintf(stderr, "Unable to write file due to: %s\n", e.what());
+			 }
+		 }
+	 }
+
+	 if (!gaussLaplaceDet.empty()) {
+		 cv::namedWindow("Laplacian: Gaussian", CV_WINDOW_NORMAL);
+		 cv::imshow("Laplacian: Gaussian", gaussLaplaceDet);
+	 }
+
+	 cv::Mat normalizedLaplaceDet;
+	 bool isNLDone = false;
+	 std::thread normLaplace(&normalizedLaplace, std::ref(file), argv[i], std::ref(normalizedLaplaceDet));
+	 if (normLaplace.joinable()) {
+		 normLaplace.join();
+		 isNLDone = true;
+	 }
+
+	 if (!normalizedLaplaceDet.empty() || isNLDone == true) {
+		 std::vector<int> comp_params;
+		 comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
+		 comp_params.push_back(100);
+		 std::string im = argv[i];
+		 boost::filesystem::path image_path(im);
+		 if (boost::filesystem::exists(image_path)) {
+			 std::string imp = image_path.filename().generic_string();
+			 try {
+				 bool save = cv::imwrite("trial_" + std::to_string(trial) + "_laplace_normalized_" + imp, normalizedLaplaceDet, comp_params);
+			 }
+			 catch (std::runtime_error& e) {
+				 appendErrorMessage(file, -3);
+				 fprintf(stderr, "Unable to write file due to: %s\n", e.what());
+			 }
+		 }
+	 }
+
+	 if (!normalizedLaplaceDet.empty()) {
+		 cv::namedWindow("Laplacian: Normalized", CV_WINDOW_NORMAL);
+		 cv::imshow("Laplacian: Normalized", normalizedLaplaceDet);
+	 }
+ }
+
  int main(int argc, char* argv[]) {
 	 int cycles = 0;
 	 std::string cyclesString;
@@ -183,8 +400,8 @@ struct IMAGEDATA {
 
 	setUpFile(file, report);
 
-	for (int trial = 0; trial < cycles; ++trial) {
-		file << "Starting trial " << trial << std::endl;
+	for (int trials = 0; trials < cycles; ++trials) {
+		file << "Starting trial " << trials << std::endl;
 		for (int i = 1; i < argc; i++) {
 			bool retflag;
 			int retval = parseArguments(argc, argv[i], file, retflag);
@@ -194,106 +411,14 @@ struct IMAGEDATA {
 			cv::imshow("Computer Vision Demo", id.currentFrameColor);
 			cv::cvtColor(id.currentFrameColor, id.currentFrameGry, cv::COLOR_BGR2GRAY);
 
-			cv::Mat gaussCannyDet;
-			bool isGCDone = false;
-			std::thread gaussCanny(&gaussianCanny, std::ref(file), argv[i], std::ref(gaussCannyDet));
-			if (gaussCanny.joinable()) {
-				gaussCanny.join();
-				isGCDone = true;
-			}
-
-			if (!gaussCannyDet.empty() || isGCDone == true) {
-				std::vector<int> comp_params;
-				comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
-				comp_params.push_back(100);
-				std::string im = argv[i];
-				boost::filesystem::path image_path(im);
-				if (boost::filesystem::exists(image_path)) {
-					std::string imp = image_path.filename().generic_string();
-					try {
-						bool save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_gaussian_" + imp, gaussCannyDet, comp_params);
-					}
-					catch (std::runtime_error& e) {
-						appendErrorMessage(file, -3);
-						fprintf(stderr, "Unable to write file due to: %s\n", e.what());
-					}
-				}
-			}
-
-			if (!gaussCannyDet.empty()) {
-				cv::namedWindow("Canny: Gaussian", CV_WINDOW_NORMAL);
-				cv::imshow("Canny: Gaussian", gaussCannyDet);
-			}
-
-			cv::Mat normalizedCannyDet;
-			bool isNCDone = false;
-			std::thread normCanny(&normalizedCanny, std::ref(file), argv[i], std::ref(normalizedCannyDet));
-			if (normCanny.joinable()) {
-				normCanny.join();
-				isNCDone = true;
-			}
-
-			if (!normalizedCannyDet.empty() || isNCDone == true) {
-				std::vector<int> comp_params;
-				comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
-				comp_params.push_back(100);
-				std::string im = argv[i];
-				boost::filesystem::path image_path(im);
-				if (boost::filesystem::exists(image_path)) {
-					std::string imp = image_path.filename().generic_string();
-					try {
-						bool save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_normalized_box_" + imp, normalizedCannyDet, comp_params);
-					}
-					catch (std::runtime_error& e) {
-						appendErrorMessage(file, -3);
-						fprintf(stderr, "Unable to write file due to: %s\n", e.what());
-					}
-				}
-			}
-
-			if (!normalizedCannyDet.empty()) {
-				cv::namedWindow("Canny: Normalized Box", CV_WINDOW_NORMAL);
-				cv::imshow("Canny: Normalized Box", gaussCannyDet);
-			}
-
-
-			cv::Mat boxCannyDet;
-			bool isBoxDone = false;
-			std::thread boxCanny(&boxCanny, std::ref(file), argv[i], std::ref(boxCannyDet));
-			if (boxCanny.joinable()) {
-				boxCanny.join();
-				isBoxDone = true;
-			}
-
-			if (!boxCannyDet.empty() || isBoxDone == true) {
-				std::vector<int> comp_params;
-				comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
-				comp_params.push_back(100);
-				std::string im = argv[i];
-				boost::filesystem::path image_path(im);
-				if (boost::filesystem::exists(image_path)) {
-					std::string imp = image_path.filename().generic_string();
-					try {
-						bool save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_box_" + imp, normalizedCannyDet, comp_params);
-					}
-					catch (std::runtime_error& e) {
-						appendErrorMessage(file, -3);
-						fprintf(stderr, "Unable to write file due to: %s\n", e.what());
-					}
-				}
-			}
-
-			if (!boxCannyDet.empty()) {
-				cv::namedWindow("Canny: Box Filter", CV_WINDOW_NORMAL);
-				cv::imshow("Canny: Box Filter", boxCannyDet);
-			}
-
+			cannyTrial(file, argv, i, trials);
+			laplaceTrial(file, argv, i, trials);
 
 			printf("Finished running edge detection. Press Esc to quit. Images and report will be found in folder where CompVisionDemo.exe is located.\n");
 			cv::waitKey(0);
 
 		}
-		file << "Trial #" << trial << " ended.\n" << std::endl;
+		file << "Trial #" << trials << " ended.\n" << std::endl;
 	}
 
 	file.close();
