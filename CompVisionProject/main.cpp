@@ -251,6 +251,9 @@ Performs a Laplacian edge detector using Gausian filter.
 			 std::string imp = image_path.filename().generic_string();
 			 try {
 				 bool save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_gaussian_" + imp, gaussCannyDet, comp_params);
+				 cv::Mat gaussianCannyInv;
+				 cv::bitwise_not(gaussCannyDet, gaussianCannyInv);
+				 save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_gaussian_inv_" + imp, gaussianCannyInv, comp_params);
 			 }
 			 catch (std::runtime_error& e) {
 				 appendErrorMessage(file, -3);
@@ -262,6 +265,10 @@ Performs a Laplacian edge detector using Gausian filter.
 	 if (!gaussCannyDet.empty()) {
 		 cv::namedWindow("Canny: Gaussian", CV_WINDOW_NORMAL);
 		 cv::imshow("Canny: Gaussian", gaussCannyDet);
+		 cv::namedWindow("Canny: Gaussian Blur Inverted", CV_WINDOW_NORMAL);
+		 cv::Mat gaussCannyInv;
+		 cv::bitwise_not(gaussCannyDet, gaussCannyInv);
+		 cv::imshow("Canny: Gaussian Blur Inverted", gaussCannyInv);
 	 }
 
 	 cv::Mat normalizedCannyDet;
@@ -282,6 +289,9 @@ Performs a Laplacian edge detector using Gausian filter.
 			 std::string imp = image_path.filename().generic_string();
 			 try {
 				 bool save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_normalized_box_" + imp, normalizedCannyDet, comp_params);
+				 cv::Mat normCannyInv;
+				 cv::bitwise_not(normalizedCannyDet, normCannyInv);
+				 save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_normalized_inv_" + imp, normCannyInv, comp_params);
 			 }
 			 catch (std::runtime_error& e) {
 				 appendErrorMessage(file, -3);
@@ -293,6 +303,10 @@ Performs a Laplacian edge detector using Gausian filter.
 	 if (!normalizedCannyDet.empty()) {
 		 cv::namedWindow("Canny: Normalized Box", CV_WINDOW_NORMAL);
 		 cv::imshow("Canny: Normalized Box", gaussCannyDet);
+		 cv::namedWindow("Canny: Normalized Box Inverted", CV_WINDOW_NORMAL);
+		 cv::Mat normalizeddCannyInv;
+		 cv::bitwise_not(normalizedCannyDet, normalizeddCannyInv);
+		 cv::imshow("Canny: Normalized Box Inverted", normalizeddCannyInv);
 	 }
 
 
@@ -313,7 +327,10 @@ Performs a Laplacian edge detector using Gausian filter.
 		 if (boost::filesystem::exists(image_path)) {
 			 std::string imp = image_path.filename().generic_string();
 			 try {
-				 bool save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_box_" + imp, normalizedCannyDet, comp_params);
+				 bool save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_box_" + imp, boxCannyDet, comp_params);
+				 cv::Mat boxCannyInv;
+				 cv::bitwise_not(boxCannyDet, boxCannyInv);
+				 save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_box_inv_" + imp, boxCannyInv, comp_params);
 			 }
 			 catch (std::runtime_error& e) {
 				 appendErrorMessage(file, -3);
@@ -325,6 +342,10 @@ Performs a Laplacian edge detector using Gausian filter.
 	 if (!boxCannyDet.empty()) {
 		 cv::namedWindow("Canny: Box Filter", CV_WINDOW_NORMAL);
 		 cv::imshow("Canny: Box Filter", boxCannyDet);
+		 cv::namedWindow("Canny: Box Filter Inverted", CV_WINDOW_NORMAL);
+		 cv::Mat boxCannyInv;
+		 cv::bitwise_not(boxCannyDet, boxCannyInv);
+		 cv::imshow("Canny: Box Filter Inverted", boxCannyInv);
 	 }
  }
 
@@ -352,6 +373,9 @@ Performs a Laplacian edge detector using Gausian filter.
 			 std::string imp = image_path.filename().generic_string();
 			 try {
 				 bool save = cv::imwrite("trial_" + std::to_string(trial) + "_laplace_gaussian_" + imp, gaussLaplaceDet, comp_params);
+				 cv::Mat gaussLaplaceInv;
+				 cv::bitwise_not(gaussLaplaceDet, gaussLaplaceInv);
+				 save = cv::imwrite("trial_" + std::to_string(trial) + "_laplace_gaussian_inv_" + imp, gaussLaplaceInv, comp_params);
 			 }
 			 catch (std::runtime_error& e) {
 				 appendErrorMessage(file, -3);
@@ -363,6 +387,10 @@ Performs a Laplacian edge detector using Gausian filter.
 	 if (!gaussLaplaceDet.empty()) {
 		 cv::namedWindow("Laplacian: Gaussian", CV_WINDOW_NORMAL);
 		 cv::imshow("Laplacian: Gaussian", gaussLaplaceDet);
+		 cv::namedWindow("Laplacian: Gaussian Blur Inverted", CV_WINDOW_NORMAL);
+		 cv::Mat gaussLaplaceInv;
+		 cv::bitwise_not(gaussLaplaceDet, gaussLaplaceInv);
+		 cv::imshow("Laplacian: Gaussian Blur Inverted", gaussLaplaceInv);
 	 }
 
 	 cv::Mat normalizedLaplaceDet;
@@ -383,6 +411,9 @@ Performs a Laplacian edge detector using Gausian filter.
 			 std::string imp = image_path.filename().generic_string();
 			 try {
 				 bool save = cv::imwrite("trial_" + std::to_string(trial) + "_laplace_normalized_" + imp, normalizedLaplaceDet, comp_params);
+				 cv::Mat normLaplaceInv;
+				 cv::bitwise_not(normalizedLaplaceDet, normLaplaceInv);
+				 save = cv::imwrite("trial_" + std::to_string(trial) + "_laplace_normalized_inv_" + imp, normLaplaceInv, comp_params);
 			 }
 			 catch (std::runtime_error& e) {
 				 appendErrorMessage(file, -3);
@@ -394,6 +425,10 @@ Performs a Laplacian edge detector using Gausian filter.
 	 if (!normalizedLaplaceDet.empty()) {
 		 cv::namedWindow("Laplacian: Normalized", CV_WINDOW_NORMAL);
 		 cv::imshow("Laplacian: Normalized", normalizedLaplaceDet);
+		 cv::namedWindow("Laplacian: Normalized Inverted", CV_WINDOW_NORMAL);
+		 cv::Mat normLaplaceInv;
+		 cv::bitwise_not(normalizedLaplaceDet, normLaplaceInv);
+		 cv::imshow("Laplacian: Normalized Inverted", normLaplaceInv);
 	 }
 
 	 cv::Mat boxLaplaceDet;
@@ -414,6 +449,9 @@ Performs a Laplacian edge detector using Gausian filter.
 			 std::string imp = image_path.filename().generic_string();
 			 try {
 				 bool save = cv::imwrite("trial_" + std::to_string(trial) + "_laplace_box_" + imp, boxLaplaceDet, comp_params);
+				 cv::Mat boxLaplaceInv;
+				 cv::bitwise_not(boxLaplaceDet, boxLaplaceInv);
+				 save = cv::imwrite("trial_" + std::to_string(trial) + "_laplace_box_inv_" + imp, boxLaplaceInv, comp_params);
 			 }
 			 catch (std::runtime_error& e) {
 				 appendErrorMessage(file, -3);
@@ -422,9 +460,13 @@ Performs a Laplacian edge detector using Gausian filter.
 		 }
 	 }
 
-	 if (!gaussLaplaceDet.empty()) {
+	 if (!boxLaplaceDet.empty()) {
 		 cv::namedWindow("Laplacian: Box Filter", CV_WINDOW_NORMAL);
+		 cv::namedWindow("Laplacian: Box Filter Inverted", CV_WINDOW_NORMAL);
 		 cv::imshow("Laplacian: Box Filter", boxLaplaceDet);
+		 cv::Mat boxLaplaceInv;
+		 cv::bitwise_not(boxLaplaceDet, boxLaplaceInv);
+		 cv::imshow("Laplacian: Box Filter Inverted", boxLaplaceInv);
 	 }
  }
 
