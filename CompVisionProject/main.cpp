@@ -207,6 +207,27 @@ Performs a Laplacian edge detector using Gausian filter.
  }
 
  /*
+ Performs a Laplacian edge detector using box filter.
+ - Pavel Shekhter
+ */
+ void boxLaplace(std::ofstream &file, char * argv, cv::Mat &mat) {
+	 file << "Starting Laplacian w/ Box filter. Initial time: ";
+	 double initGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
+	 file << initGCTime * 1000 << " ms" << std::endl;
+	 cv::boxFilter(id.currentFrameColor, id.currentFrameColor, -1, cv::Size(3, 3), cv::Point(-1, -1), true, cv::BORDER_DEFAULT);
+	 cv::cvtColor(id.currentFrameColor, id.currentFrameGry, cv::COLOR_RGB2GRAY);
+	 cv::Mat abs_dst;
+	 cv::Laplacian(id.currentFrameGry, mat, id.laplace_ddepth, id.laplace_kernel, id.laplace_scale, id.laplace_delta, cv::BORDER_DEFAULT);
+	 cv::convertScaleAbs(mat, abs_dst);
+	 mat = abs_dst;
+	 id.laplaceDest = abs_dst;
+	 file << "Laplacian w/ Box Filter finished. Final Time: ";
+	 double finalGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
+	 file << finalGCTime * 1000 << " ms" << std::endl;
+	 file << "Laplacian w/ Box Filter Blur took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
+ }
+
+ /*
  Perform the Canny edge detector trials.
  - Pavel Shekhter
  */
@@ -373,6 +394,37 @@ Performs a Laplacian edge detector using Gausian filter.
 	 if (!normalizedLaplaceDet.empty()) {
 		 cv::namedWindow("Laplacian: Normalized", CV_WINDOW_NORMAL);
 		 cv::imshow("Laplacian: Normalized", normalizedLaplaceDet);
+	 }
+
+	 cv::Mat boxLaplaceDet;
+	 bool isBLDone = false;
+	 std::thread boxLaplace(&boxLaplace, std::ref(file), argv[i], std::ref(boxLaplaceDet));
+	 if (boxLaplace.joinable()) {
+		 boxLaplace.join();
+		 isBLDone = true;
+	 }
+
+	 if (!boxLaplaceDet.empty() || isBLDone == true) {
+		 std::vector<int> comp_params;
+		 comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
+		 comp_params.push_back(100);
+		 std::string im = argv[i];
+		 boost::filesystem::path image_path(im);
+		 if (boost::filesystem::exists(image_path)) {
+			 std::string imp = image_path.filename().generic_string();
+			 try {
+				 bool save = cv::imwrite("trial_" + std::to_string(trial) + "_laplace_box_" + imp, boxLaplaceDet, comp_params);
+			 }
+			 catch (std::runtime_error& e) {
+				 appendErrorMessage(file, -3);
+				 fprintf(stderr, "Unable to write file due to: %s\n", e.what());
+			 }
+		 }
+	 }
+
+	 if (!gaussLaplaceDet.empty()) {
+		 cv::namedWindow("Laplacian: Box Filter", CV_WINDOW_NORMAL);
+		 cv::imshow("Laplacian: Box Filter", boxLaplaceDet);
 	 }
  }
 
