@@ -23,6 +23,11 @@ struct IMAGEDATA {
 	cv::Mat cannyGaussianDetectedEdges;
 	cv::Mat cannyNormalizedDetectedEdges;
 	cv::Mat laplaceDest;
+	cv::Mat sobelGrad;
+	cv::Mat sobelXGrad;
+	cv::Mat sobelYGrad;
+	cv::Mat sobelAbsXGrad;
+	cv::Mat sobelAbsYGrad;
 	int canny_lowThresh;
 	int canny_Ratio = 3;
 	int canny_Kernel = 3;
@@ -30,6 +35,9 @@ struct IMAGEDATA {
 	int laplace_scale = 1;
 	int laplace_delta = 0;
 	int laplace_ddepth = CV_16S;
+	int sobel_scale = 1;
+	int sobel_delta = 0;
+	int sobel_ddepth = CV_16S;
 } id;
 
 
@@ -225,6 +233,87 @@ Performs a Laplacian edge detector using Gausian filter.
 	 double finalGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << finalGCTime * 1000 << " ms" << std::endl;
 	 file << "Laplacian w/ Box Filter Blur took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
+ }
+
+ /*
+Perform Sobel edge detection using Gaussian blur
+ */
+ void gaussianSobel(std::ofstream &file, char *argv, cv::Mat &mat) {
+	 file << "Starting Sobel w/ Gaussian Blur. Initial time: ";
+	 double initGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
+	 file << initGCTime * 1000 << " ms" << std::endl;
+	 cv::GaussianBlur(id.currentFrameColor, id.currentFrameColor, cv::Size(3, 3), 0, 0, cv::BORDER_DEFAULT);
+	 cv::cvtColor(id.currentFrameColor, id.currentFrameGry, cv::COLOR_RGB2GRAY);
+
+	 // Perform Sobel on X-Gradient
+	 cv::Sobel(id.currentFrameGry, id.sobelXGrad, id.sobel_ddepth, 1, 0, 3, id.sobel_scale, id.sobel_delta, cv::BORDER_DEFAULT);
+	 cv::convertScaleAbs(id.sobelXGrad, id.sobelAbsXGrad);
+
+	 // Perform Sobel on Y-Gradient
+	 cv::Sobel(id.currentFrameGry, id.sobelYGrad, id.sobel_ddepth, 1, 0, 3, id.sobel_scale, id.sobel_delta, cv::BORDER_DEFAULT);
+	 cv::convertScaleAbs(id.sobelYGrad, id.sobelAbsYGrad);
+
+	 // Add Gradients
+	 cv::addWeighted(id.sobelAbsXGrad, 0.5, id.sobelAbsYGrad, 0.5, 0, id.sobelGrad);
+	 file << "Sobel w/ Gaussian Blur finished. Final Time: ";
+	 double finalGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
+	 file << finalGCTime * 1000 << " ms" << std::endl;
+	 file << "Sobel w/ Gaussian Blur took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
+	 mat = id.sobelGrad;
+ }
+
+ /*
+ Perform Sobel edge detection using Normalized Box Filter
+ */
+ void normalizedSobel(std::ofstream &file, char *argv, cv::Mat &mat) {
+	 file << "Starting Sobel w/ Normalized Box Filter. Initial time: ";
+	 double initGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
+	 file << initGCTime * 1000 << " ms" << std::endl;
+	 cv::blur(id.currentFrameColor, id.currentFrameColor, cv::Size(3, 3));
+	 cv::cvtColor(id.currentFrameColor, id.currentFrameGry, cv::COLOR_RGB2GRAY);
+
+	 // Perform Sobel on X-Gradient
+	 cv::Sobel(id.currentFrameGry, id.sobelXGrad, id.sobel_ddepth, 1, 0, 3, id.sobel_scale, id.sobel_delta, cv::BORDER_DEFAULT);
+	 cv::convertScaleAbs(id.sobelXGrad, id.sobelAbsXGrad);
+
+	 // Perform Sobel on Y-Gradient
+	 cv::Sobel(id.currentFrameGry, id.sobelYGrad, id.sobel_ddepth, 1, 0, 3, id.sobel_scale, id.sobel_delta, cv::BORDER_DEFAULT);
+	 cv::convertScaleAbs(id.sobelYGrad, id.sobelAbsYGrad);
+
+	 // Add Gradients
+	 cv::addWeighted(id.sobelAbsXGrad, 0.5, id.sobelAbsYGrad, 0.5, 0, id.sobelGrad);
+	 file << "Sobel w/ Normalized Box Filter finished. Final Time: ";
+	 double finalGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
+	 file << finalGCTime * 1000 << " ms" << std::endl;
+	 file << "Sobel w/ Normalized Box Filter took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
+	 mat = id.sobelGrad;
+ }
+
+ /*
+ Perform Sobel edge detection using Normalized Box Filter
+ */
+ void boxSobel(std::ofstream &file, char *argv, cv::Mat &mat) {
+	 file << "Starting Sobel w/ Box Filter. Initial time: ";
+	 double initGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
+	 file << initGCTime * 1000 << " ms" << std::endl;
+	 cv::boxFilter(id.currentFrameColor, id.currentFrameColor, -1, cv::Size(3, 3), cv::Point(-1, -1), true, cv::BORDER_DEFAULT);
+	 cv::cvtColor(id.currentFrameColor, id.currentFrameGry, cv::COLOR_RGB2GRAY);
+
+	 // Perform Sobel on X-Gradient
+	 cv::Sobel(id.currentFrameGry, id.sobelXGrad, id.sobel_ddepth, 1, 0, 3, id.sobel_scale, id.sobel_delta, cv::BORDER_DEFAULT);
+	 cv::convertScaleAbs(id.sobelXGrad, id.sobelAbsXGrad);
+
+	 // Perform Sobel on Y-Gradient
+	 cv::Sobel(id.currentFrameGry, id.sobelYGrad, id.sobel_ddepth, 1, 0, 3, id.sobel_scale, id.sobel_delta, cv::BORDER_DEFAULT);
+	 cv::convertScaleAbs(id.sobelYGrad, id.sobelAbsYGrad);
+
+	 // Add Gradients
+	 cv::addWeighted(id.sobelAbsXGrad, 0.5, id.sobelAbsYGrad, 0.5, 0, id.sobelGrad);
+	 file << "Sobel w/ Box Filter finished. Final Time: ";
+	 double finalGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
+	 file << finalGCTime * 1000 << " ms" << std::endl;
+	 file << "Sobel w/ Box Filter took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
+	 mat = id.sobelGrad;
  }
 
  /*
@@ -470,6 +559,127 @@ Performs a Laplacian edge detector using Gausian filter.
 	 }
  }
 
+ /*
+ Perform the Sobel edge detector trials.
+ - Pavel Shekhter
+ */
+ void sobelTrial(std::ofstream &file, char ** argv, int i, int trial) {
+
+	 cv::Mat gaussSobelMat;
+	 bool isGSDone = false;
+	 std::thread gaussSobel(&gaussianSobel, std::ref(file), argv[i], std::ref(gaussSobelMat));
+	 if (gaussSobel.joinable()) {
+		 gaussSobel.join();
+		 isGSDone = true;
+	 }
+
+	 if (!gaussSobelMat.empty() || isGSDone == true) {
+		 std::vector<int> comp_params;
+		 comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
+		 comp_params.push_back(100);
+		 std::string im = argv[i];
+		 boost::filesystem::path image_path(im);
+		 if (boost::filesystem::exists(image_path)) {
+			 std::string imp = image_path.filename().generic_string();
+			 try {
+				 bool save = cv::imwrite("trial_" + std::to_string(trial) + "_sobel_gaussian_" + imp, gaussSobelMat, comp_params);
+				 cv::Mat gaussSobelInv;
+				 cv::bitwise_not(gaussSobelMat, gaussSobelInv);
+				 save = cv::imwrite("trial_" + std::to_string(trial) + "_sobel_gaussian_inv_" + imp, gaussSobelInv, comp_params);
+			 }
+			 catch (std::runtime_error& e) {
+				 appendErrorMessage(file, -3);
+				 fprintf(stderr, "Unable to write file due to: %s\n", e.what());
+			 }
+		 }
+	 }
+
+	 if (!gaussSobelMat.empty()) {
+		 cv::namedWindow("Sobel: Gaussian", CV_WINDOW_NORMAL);
+		 cv::imshow("Sobel: Gaussian", gaussSobelMat);
+		 cv::namedWindow("Sobel: Gaussian Blur Inverted", CV_WINDOW_NORMAL);
+		 cv::Mat gaussSobelInv;
+		 cv::bitwise_not(gaussSobelMat, gaussSobelInv);
+		 cv::imshow("Sobel: Gaussian Blur Inverted", gaussSobelInv);
+	 }
+
+	 cv::Mat normalizedSobelMat;
+	 bool isNSDone = false;
+	 std::thread normSobel(&normalizedSobel, std::ref(file), argv[i], std::ref(normalizedSobelMat));
+	 if (normSobel.joinable()) {
+		 normSobel.join();
+		 isNSDone = true;
+	 }
+
+	 if (!normalizedSobelMat.empty() || isNSDone == true) {
+		 std::vector<int> comp_params;
+		 comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
+		 comp_params.push_back(100);
+		 std::string im = argv[i];
+		 boost::filesystem::path image_path(im);
+		 if (boost::filesystem::exists(image_path)) {
+			 std::string imp = image_path.filename().generic_string();
+			 try {
+				 bool save = cv::imwrite("trial_" + std::to_string(trial) + "_sobel_normalized_" + imp, normalizedSobelMat, comp_params);
+				 cv::Mat normSobelInv;
+				 cv::bitwise_not(normalizedSobelMat, normSobelInv);
+				 save = cv::imwrite("trial_" + std::to_string(trial) + "_sobel_normalized_inv_" + imp, normSobelInv, comp_params);
+			 }
+			 catch (std::runtime_error& e) {
+				 appendErrorMessage(file, -3);
+				 fprintf(stderr, "Unable to write file due to: %s\n", e.what());
+			 }
+		 }
+	 }
+
+	 if (!normalizedSobelMat.empty()) {
+		 cv::namedWindow("Sobel: Normalized", CV_WINDOW_NORMAL);
+		 cv::imshow("Sobel: Normalized", normalizedSobelMat);
+		 cv::namedWindow("Sobel: Normalized Inverted", CV_WINDOW_NORMAL);
+		 cv::Mat normSobelInv;
+		 cv::bitwise_not(normalizedSobelMat, normSobelInv);
+		 cv::imshow("Sobel: Normalized Inverted", normSobelInv);
+	 }
+
+	 cv::Mat boxSobelMat;
+	 bool isBSDone = false;
+	 std::thread boxSobel(&boxSobel, std::ref(file), argv[i], std::ref(boxSobelMat));
+	 if (boxSobel.joinable()) {
+		 boxSobel.join();
+		 isBSDone = true;
+	 }
+
+	 if (!boxSobelMat.empty() || isBSDone == true) {
+		 std::vector<int> comp_params;
+		 comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
+		 comp_params.push_back(100);
+		 std::string im = argv[i];
+		 boost::filesystem::path image_path(im);
+		 if (boost::filesystem::exists(image_path)) {
+			 std::string imp = image_path.filename().generic_string();
+			 try {
+				 bool save = cv::imwrite("trial_" + std::to_string(trial) + "_sobel_box_" + imp, boxSobelMat, comp_params);
+				 cv::Mat boxSobelInv;
+				 cv::bitwise_not(boxSobelMat, boxSobelInv);
+				 save = cv::imwrite("trial_" + std::to_string(trial) + "_laplace_box_inv_" + imp, boxSobelInv, comp_params);
+			 }
+			 catch (std::runtime_error& e) {
+				 appendErrorMessage(file, -3);
+				 fprintf(stderr, "Unable to write file due to: %s\n", e.what());
+			 }
+		 }
+	 }
+
+	 if (!boxSobelMat.empty()) {
+		 cv::namedWindow("Sobel: Box Filter", CV_WINDOW_NORMAL);
+		 cv::namedWindow("Sobel: Box Filter Inverted", CV_WINDOW_NORMAL);
+		 cv::imshow("Sobel: Box Filter", boxSobelMat);
+		 cv::Mat boxSobelInv;
+		 cv::bitwise_not(boxSobelMat, boxSobelInv);
+		 cv::imshow("Sobel: Box Filter Inverted", boxSobelInv);
+	 }
+ }
+
  int main(int argc, char* argv[]) {
 	 int cycles = 0;
 	 std::string cyclesString;
@@ -505,8 +715,9 @@ Performs a Laplacian edge detector using Gausian filter.
 			cv::imshow("Computer Vision Demo", id.currentFrameColor);
 			cv::cvtColor(id.currentFrameColor, id.currentFrameGry, cv::COLOR_BGR2GRAY);
 
-			cannyTrial(file, argv, i, trials);
 			laplaceTrial(file, argv, i, trials);
+			cannyTrial(file, argv, i, trials);
+			sobelTrial(file, argv, i, trials);
 
 			printf("Finished running edge detection. Press Esc to quit. Images and report will be found in folder where CompVisionDemo.exe is located.\n");
 			cv::waitKey(0);
