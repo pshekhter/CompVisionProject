@@ -4,32 +4,32 @@ Report file name: test.txt
 
 Starting trial 0
 Processing File: lena.jpg
-Starting Laplacian w/ Gaussian Blur. Initial time: 5.22332e+08 ms
-Laplacian w/ Gaussian Blur finished. Final Time: 5.22332e+08 ms
-Laplacian w/ Gaussian Blur took 5.34561 ms to complete.
-Starting Laplacian w/ Normalized Box Blur. Initial time: 5.22332e+08 ms
-Laplacian w/ Normalized Box Blur finished. Final Time: 5.22332e+08 ms
-Laplacian w/ Normalized Box Blur took 5.00106 ms to complete.
-Starting Laplacian w/ Box filter. Initial time: 5.22332e+08 ms
-Laplacian w/ Box Filter finished. Final Time: 5.22332e+08 ms
-Laplacian w/ Box Filter Blur took 4.53114 ms to complete.
-Starting Canny w/Gaussian Blur. Initial Time: 5.22332e+08 ms
-Canny w/Gaussian Blur finished. Final Time: 5.22332e+08 ms
-Canny w/Gaussian Blur took 3.64449 ms to complete.
-Starting Canny w/Normalized Box Blur. Initial Time: 5.22332e+08 ms
-Canny w/Normalized Box Blur finished. Final Time: 5.22332e+08 ms
-Canny w/Normalized Box Blur took 3.31777 ms to complete.
-Starting Canny w/Box Filter. Initial Time: 5.22332e+08 ms
-Canny w/Box Filter finished. Final Time: 5.22332e+08 ms
-Canny w/Box Filter took 3.30491 ms to complete.
-Starting Sobel w/ Gaussian Blur. Initial time: 5.22332e+08 ms
-Sobel w/ Gaussian Blur finished. Final Time: 5.22332e+08 ms
-Sobel w/ Gaussian Blur took 6.29012 ms to complete.
-Starting Sobel w/ Normalized Box Filter. Initial time: 5.22332e+08 ms
-Sobel w/ Normalized Box Filter finished. Final Time: 5.22332e+08 ms
-Sobel w/ Normalized Box Filter took 5.9444 ms to complete.
-Starting Sobel w/ Box Filter. Initial time: 5.22332e+08 ms
-Sobel w/ Box Filter finished. Final Time: 5.22332e+08 ms
-Sobel w/ Box Filter took 5.66882 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 5.2496e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 5.2496e+08 ms
+Laplacian w/ Gaussian Blur took 5.51365 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 5.2496e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 5.2496e+08 ms
+Laplacian w/ Normalized Box Blur took 4.68515 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 5.2496e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 5.2496e+08 ms
+Laplacian w/ Box Filter Blur took 4.6758 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 5.2496e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 5.2496e+08 ms
+Canny w/Gaussian Blur took 3.8175 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 5.2496e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 5.2496e+08 ms
+Canny w/Normalized Box Blur took 3.30608 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 5.2496e+08 ms
+Canny w/Box Filter finished. Final Time: 5.2496e+08 ms
+Canny w/Box Filter took 3.62375 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 5.2496e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 5.2496e+08 ms
+Sobel w/ Gaussian Blur took 6.9798 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 5.2496e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 5.2496e+08 ms
+Sobel w/ Normalized Box Filter took 5.6472 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 5.2496e+08 ms
+Sobel w/ Box Filter finished. Final Time: 5.2496e+08 ms
+Sobel w/ Box Filter took 5.84417 ms to complete.
 Trial #0 ended.
 

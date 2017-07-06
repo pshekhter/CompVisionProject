@@ -175,7 +175,7 @@ struct IMAGEDATA {
 	 double finalGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << finalGCTime * 1000 << " ms" << std::endl;
 	 file << "Canny w/Box Filter took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
-	 csv << (finalGCTime - initGCTime) * 1000;
+	 csv << (finalGCTime - initGCTime) * 1000 << ", ";
 	 mat = dst;
  }
 
@@ -244,7 +244,7 @@ Performs a Laplacian edge detector using Gausian filter.
 	 double finalGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << finalGCTime * 1000 << " ms" << std::endl;
 	 file << "Laplacian w/ Box Filter Blur took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
-	 csv << (finalGCTime - initGCTime) * 1000;
+	 csv << (finalGCTime - initGCTime) * 1000 << ", ";
 
  }
 
@@ -337,9 +337,8 @@ Perform Sobel edge detection using Gaussian blur
  Perform the Canny edge detector trials.
  - Pavel Shekhter
  */
- void cannyTrial(std::ofstream &file, char ** argv, int i, int trial, std::ofstream &csv)
+ void cannyTrial(std::ofstream &file, char ** argv, int i, int trial, std::ofstream &csv, int argc)
  {
-	 csv << "Trial " << trial << ",";
 	 cv::Mat gaussCannyDet;
 	 bool isGCDone = false;
 	 std::thread gaussCanny(&gaussianCanny, std::ref(file), argv[i], std::ref(gaussCannyDet), std::ref(csv));
@@ -460,7 +459,7 @@ Perform Sobel edge detection using Gaussian blur
  Perform the Laplacian edge detector trials.
  - Pavel Shekhter
  */
- void laplaceTrial(std::ofstream &file, char ** argv, int i, int trial, std::ofstream &csv) {
+ void laplaceTrial(std::ofstream &file, char ** argv, int i, int trial, std::ofstream &csv, int argc) {
 
 	 cv::Mat gaussLaplaceDet;
 	 bool isGLDone = false;
@@ -581,7 +580,7 @@ Perform Sobel edge detection using Gaussian blur
  Perform the Sobel edge detector trials.
  - Pavel Shekhter
  */
- void sobelTrial(std::ofstream &file, char ** argv, int i, int trial, std::ofstream &csv) {
+ void sobelTrial(std::ofstream &file, char ** argv, int i, int trial, std::ofstream &csv, int argc) {
 
 	 cv::Mat gaussSobelMat;
 	 bool isGSDone = false;
@@ -731,7 +730,6 @@ Perform Sobel edge detection using Gaussian blur
 
 	for (int trials = 0; trials < cycles; ++trials) {
 		file << "Starting trial " << trials << std::endl;
-		csv << "Trial " << trials << ", ";
 		for (int i = 1; i < argc; i++) {
 			bool retflag;
 			int retval = parseArguments(argc, argv[i], file, retflag);
@@ -741,9 +739,13 @@ Perform Sobel edge detection using Gaussian blur
 			cv::imshow("Computer Vision Demo", id.currentFrameColor);
 			cv::cvtColor(id.currentFrameColor, id.currentFrameGry, cv::COLOR_BGR2GRAY);
 
-			laplaceTrial(file, argv, i, trials, csv);
-			cannyTrial(file, argv, i, trials, csv);
-			sobelTrial(file, argv, i, trials, csv);
+			for (int currentArg = 1; currentArg < argc; ++currentArg) {
+				csv << "Trial #" << i << " File #" << currentArg << ", ";
+				laplaceTrial(file, argv, i, trials, csv, currentArg);
+				cannyTrial(file, argv, i, trials, csv, currentArg);
+				sobelTrial(file, argv, i, trials, csv, currentArg);
+				csv << "\n";
+			}
 
 			printf("Finished running edge detection Trial #%d. Press Esc to quit. Images and report will be found in folder where CompVisionDemo.exe is located.\n", i);
 			cv::waitKey(0);
