@@ -1,3 +1,5 @@
+#define _USE_MATH_DEFINES
+
 /*
 	This project is being developed for the CMSC-498 - Senior Seminar Fall 2017 semester at Chestnut Hill College in Philadelphia, PA.
 	The purpose is to test the accuracy and efficiency of the Canny, Sobel, and Scharr edge detectors, using the Laplacian of Gaussian and Hough
@@ -15,6 +17,7 @@
 #include <functional>
 #include <vector>
 #include <boost/filesystem.hpp>
+#include <cmath>
 #include "main.h"
 
 struct IMAGEDATA {
@@ -28,6 +31,9 @@ struct IMAGEDATA {
 	cv::Mat sobelYGrad;
 	cv::Mat sobelAbsXGrad;
 	cv::Mat sobelAbsYGrad;
+	cv::Mat gaborDest;
+	std::vector<cv::Mat> gaborKernels;
+	cv::Mat gaborSrc_f;
 	int canny_lowThresh;
 	int canny_Ratio = 3;
 	int canny_Kernel = 3;
@@ -38,6 +44,8 @@ struct IMAGEDATA {
 	int sobel_scale = 1;
 	int sobel_delta = 0;
 	int sobel_ddepth = CV_16S;
+	int gaborKernelSize = 31;
+	double gaborSig = 4.0, gaborTh = M_PI / 16, gaborLm = 10.0, gaborGm = 0.5, gaborPs = 0;
 } id;
 
 
@@ -65,7 +73,7 @@ struct IMAGEDATA {
 
 	 csv << "Trial #, Laplacian w/ Gaussian Blur, Laplacian w/ Normalized Box Filter, Laplacian w/ Box Filter, ";
 	 csv << "Canny w/ Gaussian Blur, Canny w/ Normalized Box Filter, Canny w/ Box Filter, ";
-	 csv << "Sobel w/Gaussian Blur, Sobel w/ Normalized Box Filter, Sobel w/ Box Filter\n";
+	 csv << "Sobel w/Gaussian Blur, Sobel w/ Normalized Box Filter, Sobel w/ Box Filter, Gabor filter-based edge detector w/ no additional filtering\n";
  }
 
  /*
@@ -329,8 +337,48 @@ Perform Sobel edge detection using Gaussian blur
 	 double finalGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << finalGCTime * 1000 << " ms" << std::endl;
 	 file << "Sobel w/ Box Filter took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
-	 csv << (finalGCTime - initGCTime) * 1000;
+	 csv << (finalGCTime - initGCTime) * 1000 << ", ";
 	 mat = id.sobelGrad;
+ }
+
+ /*
+ Perform a Gabor filter-based edge detector with no additional filtering
+ */
+ void gabor(std::ofstream &file, char *argv, cv::Mat &mat, std::ofstream &csv) {
+	 file << "Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: ";
+	 double initGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
+	 file << initGCTime * 1000 << " ms" << std::endl;
+	 mat = id.currentFrameGry;
+
+	 // Create a vector of kernels and filter
+	 for (int i = 0; i < (M_PI / 16); i += (M_PI / 2)) {
+		 cv::Mat kern;
+		 kern = cv::getGaborKernel(cv::Size(id.gaborKernelSize, id.gaborKernelSize), id.gaborSig, id.gaborTh, id.gaborLm, id.gaborGm, id.gaborPs, CV_32F);
+		 id.gaborKernels.push_back(kern);
+	 }
+
+	 id.gaborDest = mat;
+
+	 for (int i = 0; i < id.gaborKernels.size(); ++i) {
+		 cv::filter2D(id.gaborDest, id.gaborDest, CV_32F, id.gaborKernels.at(i));
+		 cv::Mat accum;
+		 accum = cv::Mat::zeros(id.gaborDest.size(), id.gaborDest.type());
+		 cv::normalize(id.gaborDest, id.gaborDest, 0, 255, cv::NORM_MINMAX);
+
+
+
+		 id.gaborDest.convertTo(id.gaborDest, CV_8U, 1, 0); // Shift into proper 1..255 display range
+	 }
+
+	 file << "Gabor filter-based edge detector w/ no additional filtering completed. Final Time: ";
+	 double finalGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
+	 file << finalGCTime * 1000 << " ms" << std::endl;
+	 file << "Gabor filter-based edge detector w/ no additional filtering took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
+	 csv << (finalGCTime - initGCTime) * 1000 << ", ";
+
+	 std::cerr << id.gaborDest(cv::Rect(30, 30, 10, 10)) << std::endl; // Peek into data
+	 std::cerr << mat(cv::Rect(30, 30, 10, 10)) << std::endl; // Peek into data
+	 mat = id.gaborDest;
  }
 
  /*
@@ -697,6 +745,130 @@ Perform Sobel edge detection using Gaussian blur
 	 }
  }
 
+ /*
+ Perform the Gabor edge detector trials.
+ - Pavel Shekhter
+ */
+ void gaborTrial(std::ofstream &file, char ** argv, int i, int trial, std::ofstream &csv, int argc)
+ {
+	 cv::Mat gaborDet;
+	 bool isGDone = false;
+	 std::thread gabor(&gabor, std::ref(file), argv[i], std::ref(gaborDet), std::ref(csv));
+	 if (gabor.joinable()) {
+		 gabor.join();
+		 isGDone = true;
+	 }
+
+	 if (!gaborDet.empty() || isGDone == true) {
+		 std::vector<int> comp_params;
+		 comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
+		 comp_params.push_back(100);
+		 std::string im = argv[i];
+		 boost::filesystem::path image_path(im);
+		 if (boost::filesystem::exists(image_path)) {
+			 std::string imp = image_path.filename().generic_string();
+			 try {
+				 bool save = cv::imwrite("trial_" + std::to_string(trial) + "_gabor_" + imp, gaborDet, comp_params);
+				 cv::Mat gaborInv;
+				 cv::bitwise_not(gaborDet, gaborInv);
+				 save = cv::imwrite("trial_" + std::to_string(trial) + "_gabor_inv_" + imp, gaborInv, comp_params);
+			 }
+			 catch (std::runtime_error& e) {
+				 appendErrorMessage(file, -3);
+				 fprintf(stderr, "Unable to write file due to: %s\n", e.what());
+			 }
+		 }
+	 }
+
+	 if (!gaborDet.empty()) {
+		 cv::namedWindow("Gabor", CV_WINDOW_NORMAL);
+		 cv::imshow("Gabor", gaborDet);
+		 cv::namedWindow("Gabor Inverted", CV_WINDOW_NORMAL);
+		 cv::Mat gaborInv;
+		 cv::bitwise_not(gaborDet, gaborInv);
+		 cv::imshow("Gabor Inverted", gaborInv);
+	 }
+
+	 /*
+	 cv::Mat normalizedCannyDet;
+	 bool isNCDone = false;
+	 std::thread normCanny(&normalizedCanny, std::ref(file), argv[i], std::ref(normalizedCannyDet), std::ref(csv));
+	 if (normCanny.joinable()) {
+		 normCanny.join();
+		 isNCDone = true;
+	 }
+
+	 if (!normalizedCannyDet.empty() || isNCDone == true) {
+		 std::vector<int> comp_params;
+		 comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
+		 comp_params.push_back(100);
+		 std::string im = argv[i];
+		 boost::filesystem::path image_path(im);
+		 if (boost::filesystem::exists(image_path)) {
+			 std::string imp = image_path.filename().generic_string();
+			 try {
+				 bool save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_normalized_box_" + imp, normalizedCannyDet, comp_params);
+				 cv::Mat normCannyInv;
+				 cv::bitwise_not(normalizedCannyDet, normCannyInv);
+				 save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_normalized_inv_" + imp, normCannyInv, comp_params);
+			 }
+			 catch (std::runtime_error& e) {
+				 appendErrorMessage(file, -3);
+				 fprintf(stderr, "Unable to write file due to: %s\n", e.what());
+			 }
+		 }
+	 }
+
+	 if (!normalizedCannyDet.empty()) {
+		 cv::namedWindow("Canny: Normalized Box", CV_WINDOW_NORMAL);
+		 cv::imshow("Canny: Normalized Box", gaborDet);
+		 cv::namedWindow("Canny: Normalized Box Inverted", CV_WINDOW_NORMAL);
+		 cv::Mat normalizeddCannyInv;
+		 cv::bitwise_not(normalizedCannyDet, normalizeddCannyInv);
+		 cv::imshow("Canny: Normalized Box Inverted", normalizeddCannyInv);
+	 }
+
+
+	 cv::Mat boxCannyDet;
+	 bool isBoxDone = false;
+	 std::thread boxCanny(&boxCanny, std::ref(file), argv[i], std::ref(boxCannyDet), std::ref(csv));
+	 if (boxCanny.joinable()) {
+		 boxCanny.join();
+		 isBoxDone = true;
+	 }
+
+	 if (!boxCannyDet.empty() || isBoxDone == true) {
+		 std::vector<int> comp_params;
+		 comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
+		 comp_params.push_back(100);
+		 std::string im = argv[i];
+		 boost::filesystem::path image_path(im);
+		 if (boost::filesystem::exists(image_path)) {
+			 std::string imp = image_path.filename().generic_string();
+			 try {
+				 bool save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_box_" + imp, boxCannyDet, comp_params);
+				 cv::Mat boxCannyInv;
+				 cv::bitwise_not(boxCannyDet, boxCannyInv);
+				 save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_box_inv_" + imp, boxCannyInv, comp_params);
+			 }
+			 catch (std::runtime_error& e) {
+				 appendErrorMessage(file, -3);
+				 fprintf(stderr, "Unable to write file due to: %s\n", e.what());
+			 }
+		 }
+	 }
+
+	 if (!boxCannyDet.empty()) {
+		 cv::namedWindow("Canny: Box Filter", CV_WINDOW_NORMAL);
+		 cv::imshow("Canny: Box Filter", boxCannyDet);
+		 cv::namedWindow("Canny: Box Filter Inverted", CV_WINDOW_NORMAL);
+		 cv::Mat boxCannyInv;
+		 cv::bitwise_not(boxCannyDet, boxCannyInv);
+		 cv::imshow("Canny: Box Filter Inverted", boxCannyInv);
+	 }
+	 */
+ }
+
  int main(int argc, char* argv[]) {
 	 int cycles = 0;
 	 std::string cyclesString;
@@ -744,6 +916,7 @@ Perform Sobel edge detection using Gaussian blur
 				laplaceTrial(file, argv, i, trials, csv, currentArg);
 				cannyTrial(file, argv, i, trials, csv, currentArg);
 				sobelTrial(file, argv, i, trials, csv, currentArg);
+				gaborTrial(file, argv, i, trials, csv, currentArg);
 				csv << "\n";
 			}
 
