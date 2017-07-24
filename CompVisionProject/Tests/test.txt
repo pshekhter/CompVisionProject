@@ -1,0 +1,1093 @@
+Edge Detection Analysis Data: 
+Report file name: test.txt
+
+
+Starting trial 0
+Processing File: C:\Users\iGenius\Documents\Visual Studio 2017\Projects\CompVisionProject\CompVisionProject\Tests\10-pct.jpg
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32274e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32274e+08 ms
+Laplacian w/ Gaussian Blur took 122.523 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32274e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32274e+08 ms
+Laplacian w/ Normalized Box Blur took 27.1921 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32274e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32274e+08 ms
+Laplacian w/ Box Filter Blur took 2.32504 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32274e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32275e+08 ms
+Canny w/Gaussian Blur took 87.0108 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32275e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32275e+08 ms
+Canny w/Normalized Box Blur took 2.84376 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32275e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32275e+08 ms
+Canny w/Box Filter took 1.48457 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32275e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32275e+08 ms
+Sobel w/ Gaussian Blur took 9.78177 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32275e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32275e+08 ms
+Sobel w/ Normalized Box Filter took 3.13951 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32275e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32275e+08 ms
+Sobel w/ Box Filter took 2.57812 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32275e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32275e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 126.538 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32275e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32275e+08 ms
+Laplacian w/ Gaussian Blur took 2.62049 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32275e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32275e+08 ms
+Laplacian w/ Normalized Box Blur took 2.19938 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32275e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32275e+08 ms
+Laplacian w/ Box Filter Blur took 2.43054 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32275e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32275e+08 ms
+Canny w/Gaussian Blur took 1.48194 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32275e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32275e+08 ms
+Canny w/Normalized Box Blur took 1.38345 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32275e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32275e+08 ms
+Canny w/Box Filter took 1.50444 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32275e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32275e+08 ms
+Sobel w/ Gaussian Blur took 3.09859 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32275e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32275e+08 ms
+Sobel w/ Normalized Box Filter took 2.7219 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32275e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32275e+08 ms
+Sobel w/ Box Filter took 2.77362 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32275e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32275e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 6.88599 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32275e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32275e+08 ms
+Laplacian w/ Gaussian Blur took 2.6392 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32275e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32275e+08 ms
+Laplacian w/ Normalized Box Blur took 2.29669 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32275e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32275e+08 ms
+Laplacian w/ Box Filter Blur took 2.30692 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32275e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32275e+08 ms
+Canny w/Gaussian Blur took 1.55763 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32275e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32275e+08 ms
+Canny w/Normalized Box Blur took 1.30484 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32275e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32275e+08 ms
+Canny w/Box Filter took 1.28117 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32275e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32275e+08 ms
+Sobel w/ Gaussian Blur took 2.8949 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32275e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32275e+08 ms
+Sobel w/ Normalized Box Filter took 2.74908 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32275e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32275e+08 ms
+Sobel w/ Box Filter took 6.82988 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32275e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32275e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 11.1021 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32275e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32275e+08 ms
+Laplacian w/ Gaussian Blur took 2.65702 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32275e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32275e+08 ms
+Laplacian w/ Normalized Box Blur took 2.2701 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32275e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32275e+08 ms
+Laplacian w/ Box Filter Blur took 2.27974 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32275e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32275e+08 ms
+Canny w/Gaussian Blur took 1.4156 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32276e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32276e+08 ms
+Canny w/Normalized Box Blur took 1.26773 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32276e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32276e+08 ms
+Canny w/Box Filter took 1.26217 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32276e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32276e+08 ms
+Sobel w/ Gaussian Blur took 3.04599 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32276e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32276e+08 ms
+Sobel w/ Normalized Box Filter took 2.58221 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32276e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32276e+08 ms
+Sobel w/ Box Filter took 2.57023 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32276e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32276e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 13.2553 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32276e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32276e+08 ms
+Laplacian w/ Gaussian Blur took 2.39927 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32276e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32276e+08 ms
+Laplacian w/ Normalized Box Blur took 2.1985 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32276e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32276e+08 ms
+Laplacian w/ Box Filter Blur took 2.15204 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32276e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32276e+08 ms
+Canny w/Gaussian Blur took 1.49421 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32276e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32276e+08 ms
+Canny w/Normalized Box Blur took 1.23412 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32276e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32276e+08 ms
+Canny w/Box Filter took 1.24026 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32276e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32276e+08 ms
+Sobel w/ Gaussian Blur took 2.94166 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32276e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32276e+08 ms
+Sobel w/ Normalized Box Filter took 2.71605 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32276e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32276e+08 ms
+Sobel w/ Box Filter took 2.57783 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32276e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32276e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 16.0213 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32276e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32276e+08 ms
+Laplacian w/ Gaussian Blur took 2.40804 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32276e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32276e+08 ms
+Laplacian w/ Normalized Box Blur took 2.28676 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32276e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32276e+08 ms
+Laplacian w/ Box Filter Blur took 2.17775 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32276e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32276e+08 ms
+Canny w/Gaussian Blur took 1.69118 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32276e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32276e+08 ms
+Canny w/Normalized Box Blur took 1.21074 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32276e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32276e+08 ms
+Canny w/Box Filter took 1.20577 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32276e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32276e+08 ms
+Sobel w/ Gaussian Blur took 2.85867 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32276e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32276e+08 ms
+Sobel w/ Normalized Box Filter took 2.63014 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32276e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32276e+08 ms
+Sobel w/ Box Filter took 2.69589 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32276e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32276e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 19.7947 ms to complete.
+Processing File: C:\Users\iGenius\Documents\Visual Studio 2017\Projects\CompVisionProject\CompVisionProject\Tests\15-pct.jpg
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.323e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.323e+08 ms
+Laplacian w/ Gaussian Blur took 5.60365 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.323e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.323e+08 ms
+Laplacian w/ Normalized Box Blur took 4.736 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.323e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.323e+08 ms
+Laplacian w/ Box Filter Blur took 2.90162 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.323e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.323e+08 ms
+Canny w/Gaussian Blur took 2.32621 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32301e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32301e+08 ms
+Canny w/Normalized Box Blur took 1.52899 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32301e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32301e+08 ms
+Canny w/Box Filter took 1.55353 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32301e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32301e+08 ms
+Sobel w/ Gaussian Blur took 2.85983 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32301e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32301e+08 ms
+Sobel w/ Normalized Box Filter took 2.66082 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32301e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32301e+08 ms
+Sobel w/ Box Filter took 2.64183 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32301e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32301e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 22.3529 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32301e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32301e+08 ms
+Laplacian w/ Gaussian Blur took 2.66988 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32301e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32301e+08 ms
+Laplacian w/ Normalized Box Blur took 2.24643 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32301e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32301e+08 ms
+Laplacian w/ Box Filter Blur took 2.18214 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32301e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32301e+08 ms
+Canny w/Gaussian Blur took 1.52431 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32301e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32301e+08 ms
+Canny w/Normalized Box Blur took 1.39339 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32301e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32301e+08 ms
+Canny w/Box Filter took 1.34575 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32301e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32301e+08 ms
+Sobel w/ Gaussian Blur took 2.84405 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32301e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32301e+08 ms
+Sobel w/ Normalized Box Filter took 2.62926 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32301e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32301e+08 ms
+Sobel w/ Box Filter took 2.78385 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32301e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32301e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 25.6511 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32301e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32301e+08 ms
+Laplacian w/ Gaussian Blur took 2.6918 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32301e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32301e+08 ms
+Laplacian w/ Normalized Box Blur took 2.24818 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32301e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32301e+08 ms
+Laplacian w/ Box Filter Blur took 2.23036 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32301e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32301e+08 ms
+Canny w/Gaussian Blur took 1.47346 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32301e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32301e+08 ms
+Canny w/Normalized Box Blur took 1.3551 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32301e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32301e+08 ms
+Canny w/Box Filter took 1.37001 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32301e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32301e+08 ms
+Sobel w/ Gaussian Blur took 2.81658 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32301e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32301e+08 ms
+Sobel w/ Normalized Box Filter took 2.57812 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32301e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32301e+08 ms
+Sobel w/ Box Filter took 2.5752 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32301e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32301e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 28.4093 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32301e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32301e+08 ms
+Laplacian w/ Gaussian Blur took 2.42674 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32301e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32301e+08 ms
+Laplacian w/ Normalized Box Blur took 2.20376 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32301e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32301e+08 ms
+Laplacian w/ Box Filter Blur took 2.1947 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32301e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32301e+08 ms
+Canny w/Gaussian Blur took 1.44628 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32301e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32301e+08 ms
+Canny w/Normalized Box Blur took 1.27649 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32301e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32301e+08 ms
+Canny w/Box Filter took 1.27854 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32301e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32301e+08 ms
+Sobel w/ Gaussian Blur took 2.80869 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32301e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32301e+08 ms
+Sobel w/ Normalized Box Filter took 2.57578 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32301e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32301e+08 ms
+Sobel w/ Box Filter took 2.71401 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32301e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32301e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 32.0958 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32301e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32301e+08 ms
+Laplacian w/ Gaussian Blur took 2.62663 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32301e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32301e+08 ms
+Laplacian w/ Normalized Box Blur took 2.20084 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32301e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32301e+08 ms
+Laplacian w/ Box Filter Blur took 2.18389 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32301e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32301e+08 ms
+Canny w/Gaussian Blur took 1.40917 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32302e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32302e+08 ms
+Canny w/Normalized Box Blur took 1.2762 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32302e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32302e+08 ms
+Canny w/Box Filter took 1.25837 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32302e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32302e+08 ms
+Sobel w/ Gaussian Blur took 2.81834 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32302e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32302e+08 ms
+Sobel w/ Normalized Box Filter took 2.78999 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32302e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32302e+08 ms
+Sobel w/ Box Filter took 2.78678 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32302e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32302e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 37.6741 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32302e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32302e+08 ms
+Laplacian w/ Gaussian Blur took 2.62751 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32302e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32302e+08 ms
+Laplacian w/ Normalized Box Blur took 2.26835 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32302e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32302e+08 ms
+Laplacian w/ Box Filter Blur took 2.18097 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32302e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32302e+08 ms
+Canny w/Gaussian Blur took 1.39631 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32302e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32302e+08 ms
+Canny w/Normalized Box Blur took 1.27562 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32302e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32302e+08 ms
+Canny w/Box Filter took 1.2461 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32302e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32302e+08 ms
+Sobel w/ Gaussian Blur took 2.7935 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32302e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32302e+08 ms
+Sobel w/ Normalized Box Filter took 2.7032 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32302e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32302e+08 ms
+Sobel w/ Box Filter took 2.60471 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32302e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32302e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 37.8895 ms to complete.
+Processing File: C:\Users\iGenius\Documents\Visual Studio 2017\Projects\CompVisionProject\CompVisionProject\Tests\20-pct.jpg
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32302e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32302e+08 ms
+Laplacian w/ Gaussian Blur took 2.42528 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32302e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32302e+08 ms
+Laplacian w/ Normalized Box Blur took 2.17688 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32302e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32302e+08 ms
+Laplacian w/ Box Filter Blur took 2.18652 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32302e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32302e+08 ms
+Canny w/Gaussian Blur took 1.7394 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32302e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32302e+08 ms
+Canny w/Normalized Box Blur took 1.50648 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32302e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32302e+08 ms
+Canny w/Box Filter took 1.49596 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32302e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32302e+08 ms
+Sobel w/ Gaussian Blur took 2.80489 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32302e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32302e+08 ms
+Sobel w/ Normalized Box Filter took 2.6956 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32302e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32302e+08 ms
+Sobel w/ Box Filter took 2.67777 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32302e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32302e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 42.354 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32302e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32302e+08 ms
+Laplacian w/ Gaussian Blur took 2.75258 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32302e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32302e+08 ms
+Laplacian w/ Normalized Box Blur took 2.20639 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32302e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32302e+08 ms
+Laplacian w/ Box Filter Blur took 2.20026 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32302e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32302e+08 ms
+Canny w/Gaussian Blur took 1.63974 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32302e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32302e+08 ms
+Canny w/Normalized Box Blur took 1.34225 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32302e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32302e+08 ms
+Canny w/Box Filter took 1.34225 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32302e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32302e+08 ms
+Sobel w/ Gaussian Blur took 2.82564 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32302e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32302e+08 ms
+Sobel w/ Normalized Box Filter took 2.57666 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32302e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32302e+08 ms
+Sobel w/ Box Filter took 2.60004 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32302e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32303e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 45.58 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32303e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32303e+08 ms
+Laplacian w/ Gaussian Blur took 2.54363 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32303e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32303e+08 ms
+Laplacian w/ Normalized Box Blur took 2.23299 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32303e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32303e+08 ms
+Laplacian w/ Box Filter Blur took 2.25432 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32303e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32303e+08 ms
+Canny w/Gaussian Blur took 1.57779 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32303e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32303e+08 ms
+Canny w/Normalized Box Blur took 1.34984 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32303e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32303e+08 ms
+Canny w/Box Filter took 1.39222 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32303e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32303e+08 ms
+Sobel w/ Gaussian Blur took 3.14827 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32303e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32303e+08 ms
+Sobel w/ Normalized Box Filter took 2.78327 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32303e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32303e+08 ms
+Sobel w/ Box Filter took 2.68186 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32303e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32303e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 47.9801 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32303e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32303e+08 ms
+Laplacian w/ Gaussian Blur took 2.47554 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32303e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32303e+08 ms
+Laplacian w/ Normalized Box Blur took 2.22334 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32303e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32303e+08 ms
+Laplacian w/ Box Filter Blur took 2.31744 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32303e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32303e+08 ms
+Canny w/Gaussian Blur took 1.57984 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32303e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32303e+08 ms
+Canny w/Normalized Box Blur took 1.29373 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32303e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32303e+08 ms
+Canny w/Box Filter took 1.2914 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32303e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32303e+08 ms
+Sobel w/ Gaussian Blur took 2.7973 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32303e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32303e+08 ms
+Sobel w/ Normalized Box Filter took 2.7105 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32303e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32303e+08 ms
+Sobel w/ Box Filter took 2.57666 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32303e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32303e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 50.8934 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32303e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32303e+08 ms
+Laplacian w/ Gaussian Blur took 2.46824 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32303e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32303e+08 ms
+Laplacian w/ Normalized Box Blur took 2.30371 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32303e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32303e+08 ms
+Laplacian w/ Box Filter Blur took 2.19178 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32303e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32303e+08 ms
+Canny w/Gaussian Blur took 1.5436 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32303e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32303e+08 ms
+Canny w/Normalized Box Blur took 1.26685 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32303e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32303e+08 ms
+Canny w/Box Filter took 1.28964 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32303e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32303e+08 ms
+Sobel w/ Gaussian Blur took 2.83324 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32303e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32303e+08 ms
+Sobel w/ Normalized Box Filter took 2.63452 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32303e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32303e+08 ms
+Sobel w/ Box Filter took 2.5787 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32303e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32303e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 53.9716 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32303e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32303e+08 ms
+Laplacian w/ Gaussian Blur took 2.59916 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32303e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32303e+08 ms
+Laplacian w/ Normalized Box Blur took 2.19324 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32303e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32303e+08 ms
+Laplacian w/ Box Filter Blur took 2.17571 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32303e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32303e+08 ms
+Canny w/Gaussian Blur took 1.55587 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32303e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32303e+08 ms
+Canny w/Normalized Box Blur took 1.33699 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32303e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32303e+08 ms
+Canny w/Box Filter took 1.2648 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32304e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32304e+08 ms
+Sobel w/ Gaussian Blur took 2.86685 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32304e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32304e+08 ms
+Sobel w/ Normalized Box Filter took 2.74119 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32304e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32304e+08 ms
+Sobel w/ Box Filter took 2.65322 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32304e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32304e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 57.0669 ms to complete.
+Processing File: C:\Users\iGenius\Documents\Visual Studio 2017\Projects\CompVisionProject\CompVisionProject\Tests\30-pct.jpg
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32304e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32304e+08 ms
+Laplacian w/ Gaussian Blur took 2.37384 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32304e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32304e+08 ms
+Laplacian w/ Normalized Box Blur took 2.21954 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32304e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32304e+08 ms
+Laplacian w/ Box Filter Blur took 2.22188 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32304e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32304e+08 ms
+Canny w/Gaussian Blur took 1.63185 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32304e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32304e+08 ms
+Canny w/Normalized Box Blur took 1.50385 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32304e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32304e+08 ms
+Canny w/Box Filter took 1.50911 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32304e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32304e+08 ms
+Sobel w/ Gaussian Blur took 3.136 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32304e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32304e+08 ms
+Sobel w/ Normalized Box Filter took 2.57812 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32304e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32304e+08 ms
+Sobel w/ Box Filter took 2.59887 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32304e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32304e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 60.2249 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32304e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32304e+08 ms
+Laplacian w/ Gaussian Blur took 2.6652 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32304e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32304e+08 ms
+Laplacian w/ Normalized Box Blur took 2.16869 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32304e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32304e+08 ms
+Laplacian w/ Box Filter Blur took 2.19587 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32304e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32304e+08 ms
+Canny w/Gaussian Blur took 1.45856 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32304e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32304e+08 ms
+Canny w/Normalized Box Blur took 1.34634 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32304e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32304e+08 ms
+Canny w/Box Filter took 1.35277 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32304e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32304e+08 ms
+Sobel w/ Gaussian Blur took 2.80577 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32304e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32304e+08 ms
+Sobel w/ Normalized Box Filter took 2.71664 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32304e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32304e+08 ms
+Sobel w/ Box Filter took 2.57344 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32304e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32304e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 63.4909 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32304e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32304e+08 ms
+Laplacian w/ Gaussian Blur took 2.44106 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32304e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32304e+08 ms
+Laplacian w/ Normalized Box Blur took 2.176 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32304e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32304e+08 ms
+Laplacian w/ Box Filter Blur took 2.16811 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32304e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32304e+08 ms
+Canny w/Gaussian Blur took 1.4343 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32304e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32304e+08 ms
+Canny w/Normalized Box Blur took 1.31536 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32304e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32304e+08 ms
+Canny w/Box Filter took 1.31828 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32304e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32304e+08 ms
+Sobel w/ Gaussian Blur took 2.88058 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32304e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32304e+08 ms
+Sobel w/ Normalized Box Filter took 2.59536 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32304e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32304e+08 ms
+Sobel w/ Box Filter took 2.59127 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32304e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32305e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 69.4897 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32305e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32305e+08 ms
+Laplacian w/ Gaussian Blur took 2.7067 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32305e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32305e+08 ms
+Laplacian w/ Normalized Box Blur took 2.30955 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32305e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32305e+08 ms
+Laplacian w/ Box Filter Blur took 2.26221 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32305e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32305e+08 ms
+Canny w/Gaussian Blur took 1.4831 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32305e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32305e+08 ms
+Canny w/Normalized Box Blur took 1.31916 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32305e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32305e+08 ms
+Canny w/Box Filter took 1.31857 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32305e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32305e+08 ms
+Sobel w/ Gaussian Blur took 3.10502 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32305e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32305e+08 ms
+Sobel w/ Normalized Box Filter took 2.5977 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32305e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32305e+08 ms
+Sobel w/ Box Filter took 2.61465 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32305e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32305e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 69.3976 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32305e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32305e+08 ms
+Laplacian w/ Gaussian Blur took 2.39868 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32305e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32305e+08 ms
+Laplacian w/ Normalized Box Blur took 2.18389 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32305e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32305e+08 ms
+Laplacian w/ Box Filter Blur took 2.27039 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32305e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32305e+08 ms
+Canny w/Gaussian Blur took 1.42144 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32305e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32305e+08 ms
+Canny w/Normalized Box Blur took 1.26276 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32305e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32305e+08 ms
+Canny w/Box Filter took 1.25399 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32305e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32305e+08 ms
+Sobel w/ Gaussian Blur took 2.83821 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32305e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32305e+08 ms
+Sobel w/ Normalized Box Filter took 2.57286 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32305e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32305e+08 ms
+Sobel w/ Box Filter took 2.58279 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32305e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32305e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 75.1483 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32305e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32305e+08 ms
+Laplacian w/ Gaussian Blur took 2.64329 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32305e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32305e+08 ms
+Laplacian w/ Normalized Box Blur took 2.16928 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32305e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32305e+08 ms
+Laplacian w/ Box Filter Blur took 2.16636 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32305e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32305e+08 ms
+Canny w/Gaussian Blur took 1.41297 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32305e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32305e+08 ms
+Canny w/Normalized Box Blur took 1.24961 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32305e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32305e+08 ms
+Canny w/Box Filter took 1.24785 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32305e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32305e+08 ms
+Sobel w/ Gaussian Blur took 2.80957 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32305e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32305e+08 ms
+Sobel w/ Normalized Box Filter took 2.58776 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32305e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32305e+08 ms
+Sobel w/ Box Filter took 2.60997 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32305e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32305e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 75.565 ms to complete.
+Processing File: C:\Users\iGenius\Documents\Visual Studio 2017\Projects\CompVisionProject\CompVisionProject\Tests\50-pct.jpg
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32305e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32305e+08 ms
+Laplacian w/ Gaussian Blur took 2.45684 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32305e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32306e+08 ms
+Laplacian w/ Normalized Box Blur took 2.29085 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32306e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32306e+08 ms
+Laplacian w/ Box Filter Blur took 2.2511 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32306e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32306e+08 ms
+Canny w/Gaussian Blur took 1.76102 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32306e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32306e+08 ms
+Canny w/Normalized Box Blur took 1.56844 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32306e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32306e+08 ms
+Canny w/Box Filter took 1.53191 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32306e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32306e+08 ms
+Sobel w/ Gaussian Blur took 2.90075 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32306e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32306e+08 ms
+Sobel w/ Normalized Box Filter took 2.57286 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32306e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32306e+08 ms
+Sobel w/ Box Filter took 2.58542 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32306e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32306e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 78.6577 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32306e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32306e+08 ms
+Laplacian w/ Gaussian Blur took 2.38787 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32306e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32306e+08 ms
+Laplacian w/ Normalized Box Blur took 2.18301 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32306e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32306e+08 ms
+Laplacian w/ Box Filter Blur took 2.18097 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32306e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32306e+08 ms
+Canny w/Gaussian Blur took 1.51642 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32306e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32306e+08 ms
+Canny w/Normalized Box Blur took 1.3551 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32306e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32306e+08 ms
+Canny w/Box Filter took 1.3478 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32306e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32306e+08 ms
+Sobel w/ Gaussian Blur took 2.81015 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32306e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32306e+08 ms
+Sobel w/ Normalized Box Filter took 2.57899 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32306e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32306e+08 ms
+Sobel w/ Box Filter took 2.65089 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32306e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32306e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 82.0009 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32306e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32306e+08 ms
+Laplacian w/ Gaussian Blur took 2.64621 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32306e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32306e+08 ms
+Laplacian w/ Normalized Box Blur took 2.17015 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32306e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32306e+08 ms
+Laplacian w/ Box Filter Blur took 2.25432 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32306e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32306e+08 ms
+Canny w/Gaussian Blur took 1.41326 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32306e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32306e+08 ms
+Canny w/Normalized Box Blur took 1.30776 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32306e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32306e+08 ms
+Canny w/Box Filter took 1.30659 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32306e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32306e+08 ms
+Sobel w/ Gaussian Blur took 2.84025 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32306e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32306e+08 ms
+Sobel w/ Normalized Box Filter took 2.60617 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32306e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32306e+08 ms
+Sobel w/ Box Filter took 2.57403 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32306e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32306e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 84.8353 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32306e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32306e+08 ms
+Laplacian w/ Gaussian Blur took 2.68303 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32306e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32306e+08 ms
+Laplacian w/ Normalized Box Blur took 2.18214 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32306e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32306e+08 ms
+Laplacian w/ Box Filter Blur took 2.18973 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32306e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32306e+08 ms
+Canny w/Gaussian Blur took 1.48924 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32306e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32306e+08 ms
+Canny w/Normalized Box Blur took 1.31594 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32307e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32307e+08 ms
+Canny w/Box Filter took 1.28964 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32307e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32307e+08 ms
+Sobel w/ Gaussian Blur took 2.94809 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32307e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32307e+08 ms
+Sobel w/ Normalized Box Filter took 2.75755 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32307e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32307e+08 ms
+Sobel w/ Box Filter took 2.67251 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32307e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32307e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 88.6464 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32307e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32307e+08 ms
+Laplacian w/ Gaussian Blur took 2.42265 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32307e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32307e+08 ms
+Laplacian w/ Normalized Box Blur took 2.19003 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32307e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32307e+08 ms
+Laplacian w/ Box Filter Blur took 2.27857 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32307e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32307e+08 ms
+Canny w/Gaussian Blur took 1.44248 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32307e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32307e+08 ms
+Canny w/Normalized Box Blur took 1.2613 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32307e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32307e+08 ms
+Canny w/Box Filter took 1.25867 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32307e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32307e+08 ms
+Sobel w/ Gaussian Blur took 2.90367 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32307e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32307e+08 ms
+Sobel w/ Normalized Box Filter took 2.58455 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32307e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32307e+08 ms
+Sobel w/ Box Filter took 2.5825 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32307e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32307e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 91.8175 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32307e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32307e+08 ms
+Laplacian w/ Gaussian Blur took 2.45129 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32307e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32307e+08 ms
+Laplacian w/ Normalized Box Blur took 2.24906 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32307e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32307e+08 ms
+Laplacian w/ Box Filter Blur took 2.2248 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32307e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32307e+08 ms
+Canny w/Gaussian Blur took 1.49684 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32307e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32307e+08 ms
+Canny w/Normalized Box Blur took 1.28029 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32307e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32307e+08 ms
+Canny w/Box Filter took 1.26597 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32307e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32307e+08 ms
+Sobel w/ Gaussian Blur took 2.90104 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32307e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32307e+08 ms
+Sobel w/ Normalized Box Filter took 2.70232 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32307e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32307e+08 ms
+Sobel w/ Box Filter took 2.75551 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32307e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32307e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 98.5828 ms to complete.
+Processing File: C:\Users\iGenius\Documents\Visual Studio 2017\Projects\CompVisionProject\CompVisionProject\Tests\original.jpg
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32307e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32307e+08 ms
+Laplacian w/ Gaussian Blur took 2.669 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32307e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32307e+08 ms
+Laplacian w/ Normalized Box Blur took 2.2964 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32307e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32307e+08 ms
+Laplacian w/ Box Filter Blur took 2.19266 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32307e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32307e+08 ms
+Canny w/Gaussian Blur took 1.0728 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32307e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32307e+08 ms
+Canny w/Normalized Box Blur took 0.846027 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32307e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32307e+08 ms
+Canny w/Box Filter took 0.854502 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32307e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32307e+08 ms
+Sobel w/ Gaussian Blur took 2.84405 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32307e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32308e+08 ms
+Sobel w/ Normalized Box Filter took 2.58952 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32308e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32308e+08 ms
+Sobel w/ Box Filter took 2.5863 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32308e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32308e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 98.216 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32308e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32308e+08 ms
+Laplacian w/ Gaussian Blur took 2.41008 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32308e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32308e+08 ms
+Laplacian w/ Normalized Box Blur took 2.15554 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32308e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32308e+08 ms
+Laplacian w/ Box Filter Blur took 2.26747 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32308e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32308e+08 ms
+Canny w/Gaussian Blur took 0.980164 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32308e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32308e+08 ms
+Canny w/Normalized Box Blur took 0.891616 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32308e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32308e+08 ms
+Canny w/Box Filter took 0.877589 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32308e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32308e+08 ms
+Sobel w/ Gaussian Blur took 2.80343 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32308e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32308e+08 ms
+Sobel w/ Normalized Box Filter took 2.58425 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32308e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32308e+08 ms
+Sobel w/ Box Filter took 2.57257 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32308e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32308e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 101.098 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32308e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32308e+08 ms
+Laplacian w/ Gaussian Blur took 2.69063 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32308e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32308e+08 ms
+Laplacian w/ Normalized Box Blur took 2.20464 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32308e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32308e+08 ms
+Laplacian w/ Box Filter Blur took 2.2853 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32308e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32308e+08 ms
+Canny w/Gaussian Blur took 1.10378 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32308e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32308e+08 ms
+Canny w/Normalized Box Blur took 0.905059 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32308e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32308e+08 ms
+Canny w/Box Filter took 0.894831 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32308e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32308e+08 ms
+Sobel w/ Gaussian Blur took 2.91127 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32308e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32308e+08 ms
+Sobel w/ Normalized Box Filter took 2.65556 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32308e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32308e+08 ms
+Sobel w/ Box Filter took 2.62838 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32308e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32308e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 106.658 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32308e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32308e+08 ms
+Laplacian w/ Gaussian Blur took 2.47613 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32308e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32308e+08 ms
+Laplacian w/ Normalized Box Blur took 2.20844 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32308e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32308e+08 ms
+Laplacian w/ Box Filter Blur took 2.28763 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32308e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32308e+08 ms
+Canny w/Gaussian Blur took 0.9901 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32308e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32308e+08 ms
+Canny w/Normalized Box Blur took 0.874082 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32308e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32308e+08 ms
+Canny w/Box Filter took 0.874082 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32308e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32308e+08 ms
+Sobel w/ Gaussian Blur took 2.81103 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32308e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32308e+08 ms
+Sobel w/ Normalized Box Filter took 2.59039 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32308e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32308e+08 ms
+Sobel w/ Box Filter took 2.61085 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32308e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32308e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 106.956 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32309e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32309e+08 ms
+Laplacian w/ Gaussian Blur took 2.4019 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32309e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32309e+08 ms
+Laplacian w/ Normalized Box Blur took 2.17074 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32309e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32309e+08 ms
+Laplacian w/ Box Filter Blur took 2.16752 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32309e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32309e+08 ms
+Canny w/Gaussian Blur took 0.955324 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32309e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32309e+08 ms
+Canny w/Normalized Box Blur took 0.856255 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32309e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32309e+08 ms
+Canny w/Box Filter took 0.860639 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32309e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32309e+08 ms
+Sobel w/ Gaussian Blur took 2.84844 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32309e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32309e+08 ms
+Sobel w/ Normalized Box Filter took 2.57607 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32309e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32309e+08 ms
+Sobel w/ Box Filter took 2.57578 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32309e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32309e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 110.271 ms to complete.
+Starting Laplacian w/ Gaussian Blur. Initial time: 1.32309e+08 ms
+Laplacian w/ Gaussian Blur finished. Final Time: 1.32309e+08 ms
+Laplacian w/ Gaussian Blur took 2.56088 ms to complete.
+Starting Laplacian w/ Normalized Box Blur. Initial time: 1.32309e+08 ms
+Laplacian w/ Normalized Box Blur finished. Final Time: 1.32309e+08 ms
+Laplacian w/ Normalized Box Blur took 2.18301 ms to complete.
+Starting Laplacian w/ Box filter. Initial time: 1.32309e+08 ms
+Laplacian w/ Box Filter finished. Final Time: 1.32309e+08 ms
+Laplacian w/ Box Filter Blur took 2.18301 ms to complete.
+Starting Canny w/Gaussian Blur. Initial Time: 1.32309e+08 ms
+Canny w/Gaussian Blur finished. Final Time: 1.32309e+08 ms
+Canny w/Gaussian Blur took 0.962338 ms to complete.
+Starting Canny w/Normalized Box Blur. Initial Time: 1.32309e+08 ms
+Canny w/Normalized Box Blur finished. Final Time: 1.32309e+08 ms
+Canny w/Normalized Box Blur took 0.853625 ms to complete.
+Starting Canny w/Box Filter. Initial Time: 1.32309e+08 ms
+Canny w/Box Filter finished. Final Time: 1.32309e+08 ms
+Canny w/Box Filter took 0.844566 ms to complete.
+Starting Sobel w/ Gaussian Blur. Initial time: 1.32309e+08 ms
+Sobel w/ Gaussian Blur finished. Final Time: 1.32309e+08 ms
+Sobel w/ Gaussian Blur took 2.82009 ms to complete.
+Starting Sobel w/ Normalized Box Filter. Initial time: 1.32309e+08 ms
+Sobel w/ Normalized Box Filter finished. Final Time: 1.32309e+08 ms
+Sobel w/ Normalized Box Filter took 2.57812 ms to complete.
+Starting Sobel w/ Box Filter. Initial time: 1.32309e+08 ms
+Sobel w/ Box Filter finished. Final Time: 1.32309e+08 ms
+Sobel w/ Box Filter took 2.60968 ms to complete.
+Starting Gabor filter-based edge detector w/ no additional filtering. Initial time: 1.32309e+08 ms
+Gabor filter-based edge detector w/ no additional filtering completed. Final Time: 1.32309e+08 ms
+Gabor filter-based edge detector w/ no additional filtering took 113.056 ms to complete.
+Trial #0 ended.
+
