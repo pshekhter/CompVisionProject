@@ -767,6 +767,7 @@ void gaborTrial (std::ofstream &file, char ** argv, int i, int trial, std::ofstr
         }
     }
 
+    
     if (!gaborDet.empty ()) {
         cv::namedWindow ("Gabor", CV_WINDOW_NORMAL);
         cv::imshow ("Gabor", gaborDet);
@@ -776,84 +777,6 @@ void gaborTrial (std::ofstream &file, char ** argv, int i, int trial, std::ofstr
         cv::imshow ("Gabor Inverted", gaborInv);
     }
 
-    /*
-    cv::Mat normalizedCannyDet;
-    bool isNCDone = false;
-    std::thread normCanny(&normalizedCanny, std::ref(file), argv[i], std::ref(normalizedCannyDet), std::ref(csv));
-    if (normCanny.joinable()) {
-        normCanny.join();
-        isNCDone = true;
-    }
-
-    if (!normalizedCannyDet.empty() || isNCDone == true) {
-        std::vector<int> comp_params;
-        comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
-        comp_params.push_back(100);
-        std::string im = argv[i];
-        boost::filesystem::path image_path(im);
-        if (boost::filesystem::exists(image_path)) {
-            std::string imp = image_path.filename().generic_string();
-            try {
-                bool save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_normalized_box_" + imp, normalizedCannyDet, comp_params);
-                cv::Mat normCannyInv;
-                cv::bitwise_not(normalizedCannyDet, normCannyInv);
-                save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_normalized_inv_" + imp, normCannyInv, comp_params);
-            }
-            catch (std::runtime_error& e) {
-                appendErrorMessage(file, -3);
-                fprintf(stderr, "Unable to write file due to: %s\n", e.what());
-            }
-        }
-    }
-
-    if (!normalizedCannyDet.empty()) {
-        cv::namedWindow("Canny: Normalized Box", CV_WINDOW_NORMAL);
-        cv::imshow("Canny: Normalized Box", gaborDet);
-        cv::namedWindow("Canny: Normalized Box Inverted", CV_WINDOW_NORMAL);
-        cv::Mat normalizeddCannyInv;
-        cv::bitwise_not(normalizedCannyDet, normalizeddCannyInv);
-        cv::imshow("Canny: Normalized Box Inverted", normalizeddCannyInv);
-    }
-
-
-    cv::Mat boxCannyDet;
-    bool isBoxDone = false;
-    std::thread boxCanny(&boxCanny, std::ref(file), argv[i], std::ref(boxCannyDet), std::ref(csv));
-    if (boxCanny.joinable()) {
-        boxCanny.join();
-        isBoxDone = true;
-    }
-
-    if (!boxCannyDet.empty() || isBoxDone == true) {
-        std::vector<int> comp_params;
-        comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
-        comp_params.push_back(100);
-        std::string im = argv[i];
-        boost::filesystem::path image_path(im);
-        if (boost::filesystem::exists(image_path)) {
-            std::string imp = image_path.filename().generic_string();
-            try {
-                bool save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_box_" + imp, boxCannyDet, comp_params);
-                cv::Mat boxCannyInv;
-                cv::bitwise_not(boxCannyDet, boxCannyInv);
-                save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_box_inv_" + imp, boxCannyInv, comp_params);
-            }
-            catch (std::runtime_error& e) {
-                appendErrorMessage(file, -3);
-                fprintf(stderr, "Unable to write file due to: %s\n", e.what());
-            }
-        }
-    }
-
-    if (!boxCannyDet.empty()) {
-        cv::namedWindow("Canny: Box Filter", CV_WINDOW_NORMAL);
-        cv::imshow("Canny: Box Filter", boxCannyDet);
-        cv::namedWindow("Canny: Box Filter Inverted", CV_WINDOW_NORMAL);
-        cv::Mat boxCannyInv;
-        cv::bitwise_not(boxCannyDet, boxCannyInv);
-        cv::imshow("Canny: Box Filter Inverted", boxCannyInv);
-    }
-    */
 }
 
 int main (int argc, char* argv[]) {
