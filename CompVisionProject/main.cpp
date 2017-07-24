@@ -34,6 +34,16 @@ struct IMAGEDATA {
 	cv::Mat gaborDest;
 	std::vector<cv::Mat> gaborKernels;
 	cv::Mat gaborSrc_f;
+    cv::Mat imgForegroundCGD;
+    cv::Mat imgForegroundCND;
+    cv::Mat imgForegroundCBD;
+    cv::Mat imgForegroundLGD;
+    cv::Mat imgForegroundLND;
+    cv::Mat imgForegroundLBD;
+    cv::Mat imgForegroundSGD;
+    cv::Mat imgForegroundSND;
+    cv::Mat imgForegroundSBD;
+    cv::Mat imgForegroundGab;
 	int canny_lowThresh;
 	int canny_Ratio = 3;
 	int canny_Kernel = 3;
@@ -125,6 +135,46 @@ struct IMAGEDATA {
  }
 
  /*
+ Removes background.
+ - Pavel Shekhter
+ Credit: http://opencv-java-tutorials.readthedocs.io/en/latest/07-image-segmentation.html#using-the-background-removal
+ */
+ void removeBackground (std::ofstream &file, char ** argv, cv::Mat &mat, cv::Mat dst) {
+
+     // Initialize variables
+     cv::Mat hsvImage;
+     std::vector<cv::Mat> hsvPlanes;
+     cv::Mat thresholdImg;
+
+     // Set threshold type
+     int thresh_type = cv::THRESH_BINARY_INV;
+
+     // Threshold image using avg hue vals
+     hsvImage.create (mat.size (), CV_8U);
+     cv::cvtColor (mat, hsvImage, cv::COLOR_BGR2HSV);
+     cv::split (hsvImage, hsvPlanes);
+
+     // Get average hue of image
+     // Credit: https://stackoverflow.com/questions/14349932/average-values-of-a-single-channel/14350175#14350175
+     cv::Scalar avg = cv::mean (hsvPlanes[0]);
+     double thresholdVal = avg[0];
+
+     // Threshold and smooth
+     cv::threshold (hsvPlanes.at (0), thresholdImg, thresholdVal, 179.0, thresh_type);
+     cv::blur (thresholdImg, thresholdImg, cv::Size (5, 5));
+
+     // Dilate to fill gaps, erode to smooth edges
+     cv::dilate (thresholdImg, thresholdImg, cv::Mat (), cv::Point (-1, -1), 1);
+     cv::erode (thresholdImg, thresholdImg, cv::Mat (), cv::Point (-1, -1), 3);
+
+     // Perform another threshold using binary thresholding
+     cv::threshold (thresholdImg, thresholdImg, thresholdVal, 179.0, cv::THRESH_BINARY);
+     cv::Mat foreground (mat.size (), CV_8UC3, cv::Scalar (255, 255, 255));
+     mat.copyTo (foreground, thresholdImg);
+     mat.copyTo (dst, foreground);
+ }
+
+ /*
 	Performs a Canny edge detector using Gaussian blur.
 	- Pavel Shekhter
  */
@@ -143,6 +193,10 @@ struct IMAGEDATA {
 	 file << "Canny w/Gaussian Blur took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
 	 csv << (finalGCTime - initGCTime) * 1000 << ", ";
 	 mat = dst;
+
+     file << "Removing Canny w/ Gaussian Blur Background..." << std::endl;
+     removeBackground (file, &argv, dst, id.imgForegroundCGD);
+
 }
 
  /*
@@ -164,6 +218,10 @@ struct IMAGEDATA {
 	 file << "Canny w/Normalized Box Blur took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
 	 csv << (finalGCTime - initGCTime) * 1000 << ", ";
 	 mat = dst;
+
+     file << "Removing Canny w/ Normalized Blur Background..." << std::endl;
+     removeBackground (file, &argv, dst, id.imgForegroundCND);
+
  }
 
  /*
@@ -185,6 +243,10 @@ struct IMAGEDATA {
 	 file << "Canny w/Box Filter took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
 	 csv << (finalGCTime - initGCTime) * 1000 << ", ";
 	 mat = dst;
+
+     file << "Removing Canny w/ Box Blur Background..." << std::endl;
+     removeBackground (file, &argv, dst, id.imgForegroundCBD);
+
  }
 
  /*
@@ -208,6 +270,9 @@ Performs a Laplacian edge detector using Gausian filter.
 	 file << "Laplacian w/ Gaussian Blur took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
 	 csv << (finalGCTime - initGCTime) * 1000 << ", ";
 	 
+     file << "Removing Laplacian w/ Gaussian Blur Background..." << std::endl;
+     removeBackground (file, &argv, abs_dst, id.imgForegroundLGD);
+
  }
 
  /*
@@ -231,6 +296,9 @@ Performs a Laplacian edge detector using Gausian filter.
 	 file << "Laplacian w/ Normalized Box Blur took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
 	 csv << (finalGCTime - initGCTime) * 1000 << ", ";
 
+     file << "Removing Laplacian w/ Normalized Blur Background..." << std::endl;
+     removeBackground (file, &argv, abs_dst, id.imgForegroundLND);
+
  }
 
  /*
@@ -253,6 +321,9 @@ Performs a Laplacian edge detector using Gausian filter.
 	 file << finalGCTime * 1000 << " ms" << std::endl;
 	 file << "Laplacian w/ Box Filter Blur took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
 	 csv << (finalGCTime - initGCTime) * 1000 << ", ";
+
+     file << "Removing Laplacian w/ Box Blur Background..." << std::endl;
+     removeBackground (file, &argv, abs_dst, id.imgForegroundLBD);
 
  }
 
@@ -283,6 +354,9 @@ Perform Sobel edge detection using Gaussian blur
 	 csv << (finalGCTime - initGCTime) * 1000 << ", ";
 	 mat = id.sobelGrad;
 
+     file << "Removing Sobel w/ Gaussian Blur Background..." << std::endl;
+     removeBackground (file, &argv, id.sobelGrad, id.imgForegroundSGD);
+
  }
 
  /*
@@ -311,6 +385,10 @@ Perform Sobel edge detection using Gaussian blur
 	 file << "Sobel w/ Normalized Box Filter took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
 	 csv << (finalGCTime - initGCTime) * 1000 << ", ";
 	 mat = id.sobelGrad;
+
+     file << "Removing Sobel w/ Normalized Blur Background..." << std::endl;
+     removeBackground (file, &argv, id.sobelGrad, id.imgForegroundSND);
+
  }
 
  /*
@@ -339,6 +417,10 @@ Perform Sobel edge detection using Gaussian blur
 	 file << "Sobel w/ Box Filter took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
 	 csv << (finalGCTime - initGCTime) * 1000 << ", ";
 	 mat = id.sobelGrad;
+
+     file << "Removing Sobel w/ Gaussian Blur Background..." << std::endl;
+     removeBackground (file, &argv, id.sobelGrad, id.imgForegroundSBD);
+
  }
 
  /*
@@ -379,6 +461,10 @@ Perform Sobel edge detection using Gaussian blur
 	 std::cerr << id.gaborDest(cv::Rect(30, 30, 10, 10)) << std::endl; // Peek into data
 	 std::cerr << mat(cv::Rect(30, 30, 10, 10)) << std::endl; // Peek into data
 	 mat = id.gaborDest;
+
+     file << "Removing Gabor Background..." << std::endl;
+     removeBackground (file, &argv, mat, id.imgForegroundGab);
+
  }
 
  /*
