@@ -58,10 +58,14 @@ struct IMAGEDATA {
 	Sets up the report.
 	- Pavel Shekhter
  */
- void setUpFile(std::ofstream &file, std::string &report_name) {
+ void setUpFile(std::ofstream &file, std::string &report_name, std::ofstream &csv) {
 	 file << "Edge Detection Analysis Data: " << std::endl;
 	 file << "Report file name: " << report_name << std::endl;
 	 file << "\n\n";
+
+	 csv << "Trial #, Laplacian w/ Gaussian Blur, Laplacian w/ Normalized Box Filter, Laplacian w/ Box Filter, ";
+	 csv << "Canny w/ Gaussian Blur, Canny w/ Normalized Box Filter, Canny w/ Box Filter, ";
+	 csv << "Sobel w/Gaussian Blur, Sobel w/ Normalized Box Filter, Sobel w/ Box Filter\n";
  }
 
  /*
@@ -116,7 +120,7 @@ struct IMAGEDATA {
 	Performs a Canny edge detector using Gaussian blur.
 	- Pavel Shekhter
  */
- void gaussianCanny(std::ofstream &file, char * argv, cv::Mat &mat) {
+ void gaussianCanny(std::ofstream &file, char * argv, cv::Mat &mat, std::ofstream &csv) {
 	 file << "Starting Canny w/Gaussian Blur. Initial Time: ";
 	 double initGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << initGCTime * 1000 << " ms" << std::endl;
@@ -129,6 +133,7 @@ struct IMAGEDATA {
 	 double finalGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << finalGCTime * 1000 << " ms" << std::endl;
 	 file << "Canny w/Gaussian Blur took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
+	 csv << (finalGCTime - initGCTime) * 1000 << ", ";
 	 mat = dst;
 }
 
@@ -136,7 +141,7 @@ struct IMAGEDATA {
  Performs a Canny edge detector using normalized box blur.
  - Pavel Shekhter
  */
- void normalizedCanny(std::ofstream &file, char * argv, cv::Mat &mat) {
+ void normalizedCanny(std::ofstream &file, char * argv, cv::Mat &mat, std::ofstream &csv) {
 	 file << "Starting Canny w/Normalized Box Blur. Initial Time: ";
 	 double initGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << initGCTime * 1000 << " ms" << std::endl;
@@ -149,6 +154,7 @@ struct IMAGEDATA {
 	 double finalGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << finalGCTime * 1000 << " ms" << std::endl;
 	 file << "Canny w/Normalized Box Blur took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
+	 csv << (finalGCTime - initGCTime) * 1000 << ", ";
 	 mat = dst;
  }
 
@@ -156,7 +162,7 @@ struct IMAGEDATA {
  Performs a Canny edge detector using box filter.
  - Pavel Shekhter
  */
- void boxCanny(std::ofstream &file, char * argv, cv::Mat &mat) {
+ void boxCanny(std::ofstream &file, char * argv, cv::Mat &mat, std::ofstream &csv) {
 	 file << "Starting Canny w/Box Filter. Initial Time: ";
 	 double initGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << initGCTime * 1000 << " ms" << std::endl;
@@ -169,6 +175,7 @@ struct IMAGEDATA {
 	 double finalGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << finalGCTime * 1000 << " ms" << std::endl;
 	 file << "Canny w/Box Filter took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
+	 csv << (finalGCTime - initGCTime) * 1000 << ", ";
 	 mat = dst;
  }
 
@@ -176,7 +183,7 @@ struct IMAGEDATA {
 Performs a Laplacian edge detector using Gausian filter.
 - Pavel Shekhter
  */
- void gausianLaplace(std::ofstream &file, char * argv, cv::Mat &mat) {
+ void gausianLaplace(std::ofstream &file, char * argv, cv::Mat &mat, std::ofstream &csv) {
 	 file << "Starting Laplacian w/ Gaussian Blur. Initial time: ";
 	 double initGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << initGCTime * 1000 << " ms" << std::endl;
@@ -191,13 +198,15 @@ Performs a Laplacian edge detector using Gausian filter.
 	 double finalGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << finalGCTime * 1000 << " ms" << std::endl;
 	 file << "Laplacian w/ Gaussian Blur took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
+	 csv << (finalGCTime - initGCTime) * 1000 << ", ";
+	 
  }
 
  /*
  Performs a Laplacian edge detector using normalized box blur.
  - Pavel Shekhter
  */
- void normalizedLaplace(std::ofstream &file, char * argv, cv::Mat &mat) {
+ void normalizedLaplace(std::ofstream &file, char * argv, cv::Mat &mat, std::ofstream &csv) {
 	 file << "Starting Laplacian w/ Normalized Box Blur. Initial time: ";
 	 double initGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << initGCTime * 1000 << " ms" << std::endl;
@@ -212,13 +221,15 @@ Performs a Laplacian edge detector using Gausian filter.
 	 double finalGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << finalGCTime * 1000 << " ms" << std::endl;
 	 file << "Laplacian w/ Normalized Box Blur took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
+	 csv << (finalGCTime - initGCTime) * 1000 << ", ";
+
  }
 
  /*
  Performs a Laplacian edge detector using box filter.
  - Pavel Shekhter
  */
- void boxLaplace(std::ofstream &file, char * argv, cv::Mat &mat) {
+ void boxLaplace(std::ofstream &file, char * argv, cv::Mat &mat, std::ofstream &csv) {
 	 file << "Starting Laplacian w/ Box filter. Initial time: ";
 	 double initGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << initGCTime * 1000 << " ms" << std::endl;
@@ -233,12 +244,14 @@ Performs a Laplacian edge detector using Gausian filter.
 	 double finalGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << finalGCTime * 1000 << " ms" << std::endl;
 	 file << "Laplacian w/ Box Filter Blur took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
+	 csv << (finalGCTime - initGCTime) * 1000 << ", ";
+
  }
 
  /*
 Perform Sobel edge detection using Gaussian blur
  */
- void gaussianSobel(std::ofstream &file, char *argv, cv::Mat &mat) {
+ void gaussianSobel(std::ofstream &file, char *argv, cv::Mat &mat, std::ofstream &csv) {
 	 file << "Starting Sobel w/ Gaussian Blur. Initial time: ";
 	 double initGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << initGCTime * 1000 << " ms" << std::endl;
@@ -259,13 +272,15 @@ Perform Sobel edge detection using Gaussian blur
 	 double finalGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << finalGCTime * 1000 << " ms" << std::endl;
 	 file << "Sobel w/ Gaussian Blur took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
+	 csv << (finalGCTime - initGCTime) * 1000 << ", ";
 	 mat = id.sobelGrad;
+
  }
 
  /*
  Perform Sobel edge detection using Normalized Box Filter
  */
- void normalizedSobel(std::ofstream &file, char *argv, cv::Mat &mat) {
+ void normalizedSobel(std::ofstream &file, char *argv, cv::Mat &mat, std::ofstream &csv) {
 	 file << "Starting Sobel w/ Normalized Box Filter. Initial time: ";
 	 double initGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << initGCTime * 1000 << " ms" << std::endl;
@@ -286,13 +301,14 @@ Perform Sobel edge detection using Gaussian blur
 	 double finalGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << finalGCTime * 1000 << " ms" << std::endl;
 	 file << "Sobel w/ Normalized Box Filter took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
+	 csv << (finalGCTime - initGCTime) * 1000 << ", ";
 	 mat = id.sobelGrad;
  }
 
  /*
  Perform Sobel edge detection using Normalized Box Filter
  */
- void boxSobel(std::ofstream &file, char *argv, cv::Mat &mat) {
+ void boxSobel(std::ofstream &file, char *argv, cv::Mat &mat, std::ofstream &csv) {
 	 file << "Starting Sobel w/ Box Filter. Initial time: ";
 	 double initGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << initGCTime * 1000 << " ms" << std::endl;
@@ -313,6 +329,7 @@ Perform Sobel edge detection using Gaussian blur
 	 double finalGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << finalGCTime * 1000 << " ms" << std::endl;
 	 file << "Sobel w/ Box Filter took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
+	 csv << (finalGCTime - initGCTime) * 1000;
 	 mat = id.sobelGrad;
  }
 
@@ -320,11 +337,11 @@ Perform Sobel edge detection using Gaussian blur
  Perform the Canny edge detector trials.
  - Pavel Shekhter
  */
- void cannyTrial(std::ofstream &file, char ** argv, int i, int trial)
+ void cannyTrial(std::ofstream &file, char ** argv, int i, int trial, std::ofstream &csv, int argc)
  {
 	 cv::Mat gaussCannyDet;
 	 bool isGCDone = false;
-	 std::thread gaussCanny(&gaussianCanny, std::ref(file), argv[i], std::ref(gaussCannyDet));
+	 std::thread gaussCanny(&gaussianCanny, std::ref(file), argv[i], std::ref(gaussCannyDet), std::ref(csv));
 	 if (gaussCanny.joinable()) {
 		 gaussCanny.join();
 		 isGCDone = true;
@@ -362,7 +379,7 @@ Perform Sobel edge detection using Gaussian blur
 
 	 cv::Mat normalizedCannyDet;
 	 bool isNCDone = false;
-	 std::thread normCanny(&normalizedCanny, std::ref(file), argv[i], std::ref(normalizedCannyDet));
+	 std::thread normCanny(&normalizedCanny, std::ref(file), argv[i], std::ref(normalizedCannyDet), std::ref(csv));
 	 if (normCanny.joinable()) {
 		 normCanny.join();
 		 isNCDone = true;
@@ -401,7 +418,7 @@ Perform Sobel edge detection using Gaussian blur
 
 	 cv::Mat boxCannyDet;
 	 bool isBoxDone = false;
-	 std::thread boxCanny(&boxCanny, std::ref(file), argv[i], std::ref(boxCannyDet));
+	 std::thread boxCanny(&boxCanny, std::ref(file), argv[i], std::ref(boxCannyDet), std::ref(csv));
 	 if (boxCanny.joinable()) {
 		 boxCanny.join();
 		 isBoxDone = true;
@@ -442,11 +459,11 @@ Perform Sobel edge detection using Gaussian blur
  Perform the Laplacian edge detector trials.
  - Pavel Shekhter
  */
- void laplaceTrial(std::ofstream &file, char ** argv, int i, int trial) {
+ void laplaceTrial(std::ofstream &file, char ** argv, int i, int trial, std::ofstream &csv, int argc) {
 
 	 cv::Mat gaussLaplaceDet;
 	 bool isGLDone = false;
-	 std::thread gaussLaplace(&gausianLaplace, std::ref(file), argv[i], std::ref(gaussLaplaceDet));
+	 std::thread gaussLaplace(&gausianLaplace, std::ref(file), argv[i], std::ref(gaussLaplaceDet), std::ref(csv));
 	 if (gaussLaplace.joinable()) {
 		 gaussLaplace.join();
 		 isGLDone = true;
@@ -484,7 +501,7 @@ Perform Sobel edge detection using Gaussian blur
 
 	 cv::Mat normalizedLaplaceDet;
 	 bool isNLDone = false;
-	 std::thread normLaplace(&normalizedLaplace, std::ref(file), argv[i], std::ref(normalizedLaplaceDet));
+	 std::thread normLaplace(&normalizedLaplace, std::ref(file), argv[i], std::ref(normalizedLaplaceDet), std::ref(csv));
 	 if (normLaplace.joinable()) {
 		 normLaplace.join();
 		 isNLDone = true;
@@ -522,7 +539,7 @@ Perform Sobel edge detection using Gaussian blur
 
 	 cv::Mat boxLaplaceDet;
 	 bool isBLDone = false;
-	 std::thread boxLaplace(&boxLaplace, std::ref(file), argv[i], std::ref(boxLaplaceDet));
+	 std::thread boxLaplace(&boxLaplace, std::ref(file), argv[i], std::ref(boxLaplaceDet), std::ref(csv));
 	 if (boxLaplace.joinable()) {
 		 boxLaplace.join();
 		 isBLDone = true;
@@ -563,11 +580,11 @@ Perform Sobel edge detection using Gaussian blur
  Perform the Sobel edge detector trials.
  - Pavel Shekhter
  */
- void sobelTrial(std::ofstream &file, char ** argv, int i, int trial) {
+ void sobelTrial(std::ofstream &file, char ** argv, int i, int trial, std::ofstream &csv, int argc) {
 
 	 cv::Mat gaussSobelMat;
 	 bool isGSDone = false;
-	 std::thread gaussSobel(&gaussianSobel, std::ref(file), argv[i], std::ref(gaussSobelMat));
+	 std::thread gaussSobel(&gaussianSobel, std::ref(file), argv[i], std::ref(gaussSobelMat), std::ref(csv));
 	 if (gaussSobel.joinable()) {
 		 gaussSobel.join();
 		 isGSDone = true;
@@ -605,7 +622,7 @@ Perform Sobel edge detection using Gaussian blur
 
 	 cv::Mat normalizedSobelMat;
 	 bool isNSDone = false;
-	 std::thread normSobel(&normalizedSobel, std::ref(file), argv[i], std::ref(normalizedSobelMat));
+	 std::thread normSobel(&normalizedSobel, std::ref(file), argv[i], std::ref(normalizedSobelMat), std::ref(csv));
 	 if (normSobel.joinable()) {
 		 normSobel.join();
 		 isNSDone = true;
@@ -643,7 +660,7 @@ Perform Sobel edge detection using Gaussian blur
 
 	 cv::Mat boxSobelMat;
 	 bool isBSDone = false;
-	 std::thread boxSobel(&boxSobel, std::ref(file), argv[i], std::ref(boxSobelMat));
+	 std::thread boxSobel(&boxSobel, std::ref(file), argv[i], std::ref(boxSobelMat), std::ref(csv));
 	 if (boxSobel.joinable()) {
 		 boxSobel.join();
 		 isBSDone = true;
@@ -684,6 +701,7 @@ Perform Sobel edge detection using Gaussian blur
 	 int cycles = 0;
 	 std::string cyclesString;
 	 std::ofstream file;
+	 std::ofstream csv;
 
 	if (!(argc > 1)) {
 		std::cout << "Usage: CompVisionProject imageToLoad" << std::endl;
@@ -696,13 +714,19 @@ Perform Sobel edge detection using Gaussian blur
 	std::cout << "Enter report file name: " << std::endl;
 	getline(std::cin, report);
 
+	std::string csvString;
+
+	std::cout << "Enter name of CSV: " << std::endl;
+	getline(std::cin, csvString);
+
 	std::cout << "How many trials do you want?" << std::endl;
 	getline(std::cin, cyclesString);
 	cycles = std::stoi(cyclesString);
 
 	file.open(report);
+	csv.open(csvString);
 
-	setUpFile(file, report);
+	setUpFile(file, report, csv);
 
 	for (int trials = 0; trials < cycles; ++trials) {
 		file << "Starting trial " << trials << std::endl;
@@ -715,14 +739,19 @@ Perform Sobel edge detection using Gaussian blur
 			cv::imshow("Computer Vision Demo", id.currentFrameColor);
 			cv::cvtColor(id.currentFrameColor, id.currentFrameGry, cv::COLOR_BGR2GRAY);
 
-			laplaceTrial(file, argv, i, trials);
-			cannyTrial(file, argv, i, trials);
-			sobelTrial(file, argv, i, trials);
+			for (int currentArg = 1; currentArg < argc; ++currentArg) {
+				csv << "Trial #" << i << " File #" << currentArg << ", ";
+				laplaceTrial(file, argv, i, trials, csv, currentArg);
+				cannyTrial(file, argv, i, trials, csv, currentArg);
+				sobelTrial(file, argv, i, trials, csv, currentArg);
+				csv << "\n";
+			}
 
-			printf("Finished running edge detection. Press Esc to quit. Images and report will be found in folder where CompVisionDemo.exe is located.\n");
+			printf("Finished running edge detection Trial #%d. Press Esc to quit. Images and report will be found in folder where CompVisionDemo.exe is located.\n", i);
 			cv::waitKey(0);
 
 		}
+		csv << "\n";
 		file << "Trial #" << trials << " ended.\n" << std::endl;
 	}
 
