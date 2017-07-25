@@ -139,19 +139,23 @@ struct IMAGEDATA {
  - Pavel Shekhter
  Credit: http://opencv-java-tutorials.readthedocs.io/en/latest/07-image-segmentation.html#using-the-background-removal
  */
- void removeBackground (std::ofstream &file, char ** argv, cv::Mat &mat, cv::Mat dst) {
+ void removeBackground (std::ofstream &file, char ** argv, cv::Mat & mat, cv::Mat & dst) {
 
      // Initialize variables
      cv::Mat hsvImage;
      std::vector<cv::Mat> hsvPlanes;
      cv::Mat thresholdImg;
+     cv::Mat rgbImage;
+     rgbImage.create (mat.size (), CV_8U);
+     cv::cvtColor (mat, rgbImage, cv::COLOR_GRAY2BGR);
+
 
      // Set threshold type
      int thresh_type = cv::THRESH_BINARY_INV;
 
      // Threshold image using avg hue vals
      hsvImage.create (mat.size (), CV_8U);
-     cv::cvtColor (mat, hsvImage, cv::COLOR_BGR2HSV);
+     cv::cvtColor (rgbImage, hsvImage, cv::COLOR_BGR2HSV);
      cv::split (hsvImage, hsvPlanes);
 
      // Get average hue of image
@@ -195,7 +199,7 @@ struct IMAGEDATA {
 	 mat = dst;
 
      file << "Removing Canny w/ Gaussian Blur Background..." << std::endl;
-     removeBackground (file, &argv, dst, id.imgForegroundCGD);
+     removeBackground (file, &argv, std::ref(dst), std::ref (id.imgForegroundCGD));
 
 }
 
@@ -220,7 +224,7 @@ struct IMAGEDATA {
 	 mat = dst;
 
      file << "Removing Canny w/ Normalized Blur Background..." << std::endl;
-     removeBackground (file, &argv, dst, id.imgForegroundCND);
+     removeBackground (file, &argv, std::ref(dst), id.imgForegroundCND);
 
  }
 
@@ -245,7 +249,7 @@ struct IMAGEDATA {
 	 mat = dst;
 
      file << "Removing Canny w/ Box Blur Background..." << std::endl;
-     removeBackground (file, &argv, dst, id.imgForegroundCBD);
+     removeBackground (file, &argv, std::ref(dst), id.imgForegroundCBD);
 
  }
 
@@ -271,7 +275,7 @@ Performs a Laplacian edge detector using Gausian filter.
 	 csv << (finalGCTime - initGCTime) * 1000 << ", ";
 	 
      file << "Removing Laplacian w/ Gaussian Blur Background..." << std::endl;
-     removeBackground (file, &argv, abs_dst, id.imgForegroundLGD);
+     removeBackground (file, &argv, id.laplaceDest, id.imgForegroundLGD);
 
  }
 
@@ -297,7 +301,7 @@ Performs a Laplacian edge detector using Gausian filter.
 	 csv << (finalGCTime - initGCTime) * 1000 << ", ";
 
      file << "Removing Laplacian w/ Normalized Blur Background..." << std::endl;
-     removeBackground (file, &argv, abs_dst, id.imgForegroundLND);
+     removeBackground (file, &argv, std::ref(abs_dst), id.imgForegroundLND);
 
  }
 
@@ -323,7 +327,7 @@ Performs a Laplacian edge detector using Gausian filter.
 	 csv << (finalGCTime - initGCTime) * 1000 << ", ";
 
      file << "Removing Laplacian w/ Box Blur Background..." << std::endl;
-     removeBackground (file, &argv, abs_dst, id.imgForegroundLBD);
+     removeBackground (file, &argv, std::ref (abs_dst), id.imgForegroundLBD);
 
  }
 
@@ -355,7 +359,7 @@ Perform Sobel edge detection using Gaussian blur
 	 mat = id.sobelGrad;
 
      file << "Removing Sobel w/ Gaussian Blur Background..." << std::endl;
-     removeBackground (file, &argv, id.sobelGrad, id.imgForegroundSGD);
+     removeBackground (file, &argv, std::ref(id.sobelGrad), id.imgForegroundSGD);
 
  }
 
@@ -387,7 +391,7 @@ Perform Sobel edge detection using Gaussian blur
 	 mat = id.sobelGrad;
 
      file << "Removing Sobel w/ Normalized Blur Background..." << std::endl;
-     removeBackground (file, &argv, id.sobelGrad, id.imgForegroundSND);
+     removeBackground (file, &argv, std::ref (id.sobelGrad), id.imgForegroundSND);
 
  }
 
@@ -419,7 +423,7 @@ Perform Sobel edge detection using Gaussian blur
 	 mat = id.sobelGrad;
 
      file << "Removing Sobel w/ Gaussian Blur Background..." << std::endl;
-     removeBackground (file, &argv, id.sobelGrad, id.imgForegroundSBD);
+     removeBackground (file, &argv, std::ref (id.sobelGrad), id.imgForegroundSBD);
 
  }
 
@@ -463,7 +467,7 @@ Perform Sobel edge detection using Gaussian blur
 	 mat = id.gaborDest;
 
      file << "Removing Gabor Background..." << std::endl;
-     removeBackground (file, &argv, mat, id.imgForegroundGab);
+     removeBackground (file, &argv, std::ref(mat), id.imgForegroundGab);
 
  }
 
@@ -494,6 +498,8 @@ Perform Sobel edge detection using Gaussian blur
 				 cv::Mat gaussianCannyInv;
 				 cv::bitwise_not(gaussCannyDet, gaussianCannyInv);
 				 save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_gaussian_inv_" + imp, gaussianCannyInv, comp_params);
+
+                 save = cv::imwrite ("trial_" + std::to_string (trial) + "_canny_gaussian_foreground_" + imp, id.imgForegroundCGD, comp_params);
 			 }
 			 catch (std::runtime_error& e) {
 				 appendErrorMessage(file, -3);
@@ -509,6 +515,8 @@ Perform Sobel edge detection using Gaussian blur
 		 cv::Mat gaussCannyInv;
 		 cv::bitwise_not(gaussCannyDet, gaussCannyInv);
 		 cv::imshow("Canny: Gaussian Blur Inverted", gaussCannyInv);
+         cv::namedWindow ("Canny: Gaussian Foreground", CV_WINDOW_NORMAL);
+         cv::imshow ("Canny: Gaussian Foreground", id.imgForegroundCGD);
 	 }
 
 	 cv::Mat normalizedCannyDet;
@@ -532,6 +540,7 @@ Perform Sobel edge detection using Gaussian blur
 				 cv::Mat normCannyInv;
 				 cv::bitwise_not(normalizedCannyDet, normCannyInv);
 				 save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_normalized_inv_" + imp, normCannyInv, comp_params);
+                 save = cv::imwrite ("trial_" + std::to_string (trial) + "_canny_normalized_foreground_" + imp, id.imgForegroundCND, comp_params);
 			 }
 			 catch (std::runtime_error& e) {
 				 appendErrorMessage(file, -3);
@@ -547,6 +556,9 @@ Perform Sobel edge detection using Gaussian blur
 		 cv::Mat normalizeddCannyInv;
 		 cv::bitwise_not(normalizedCannyDet, normalizeddCannyInv);
 		 cv::imshow("Canny: Normalized Box Inverted", normalizeddCannyInv);
+         cv::namedWindow ("Canny: Normalized Foreground", CV_WINDOW_NORMAL);
+         cv::imshow ("Canny: Normalized Foreground", id.imgForegroundCND);
+
 	 }
 
 
