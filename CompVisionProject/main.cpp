@@ -1024,7 +1024,7 @@ Perform Sobel edge detection using Gaussian blur
 			cv::cvtColor(id.currentFrameColor, id.currentFrameGry, cv::COLOR_BGR2GRAY);
 
 			for (int currentArg = 1; currentArg < argc; ++currentArg) {
-				csv << "Trial #" << i << " File #" << currentArg << ", ";
+				csv << "Trial #" << trials << " File #" << currentArg << ", ";
 				laplaceTrial(file, argv, i, trials, csv, currentArg);
 				cannyTrial(file, argv, i, trials, csv, currentArg);
 				sobelTrial(file, argv, i, trials, csv, currentArg);
