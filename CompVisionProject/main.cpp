@@ -56,7 +56,7 @@ struct IMAGEDATA {
 	int sobel_delta = 0;
 	int sobel_ddepth = CV_16S;
 	int gaborKernelSize = 31;
-	double gaborSig = 4.0, gaborTh = M_PI / 16, gaborLm = 10.0, gaborGm = 0.5, gaborPs = 0;
+	double gaborSig = 4.0, gaborTh = 45.0, gaborLm = 10.0, gaborGm = 0.5, gaborPs = 0;
 } id;
 
 
@@ -159,23 +159,35 @@ struct IMAGEDATA {
  */
  void gaussianCanny(std::ofstream &file, char * argv, cv::Mat &mat, std::ofstream &csv, cv::Mat & colorMat) {
 	 file << "Starting Canny w/Gaussian Blur. Initial Time: ";
+
+     // Get initial time
 	 double initGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << initGCTime * 1000 << " ms" << std::endl;
+
+     // Convolve the greyscale image with a 3x3 Gaussian Blur matrix and output to a detected-edges matrix
 	 cv::GaussianBlur(id.currentFrameGry, id.cannyGaussianDetectedEdges, cv::Size(3, 3), 0, 0, cv::BORDER_DEFAULT);
+
+     // Use the Canny edge detector with the defined low threshold, ratio, and kernel
 	 cv::Canny(id.cannyGaussianDetectedEdges, id.cannyGaussianDetectedEdges, id.canny_lowThresh, id.canny_lowThresh * id.canny_Ratio, id.canny_Kernel);
+
+     // Copy the detected edges to a 0-matrix
 	 cv::Mat dst;
 	 dst = cv::Scalar::all(0);
 	 id.currentFrameGry.copyTo(dst, id.cannyGaussianDetectedEdges);
+
+     // Calculate final time
 	 file << "Canny w/Gaussian Blur finished. Final Time: ";
 	 double finalGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << finalGCTime * 1000 << " ms" << std::endl;
 	 file << "Canny w/Gaussian Blur took " << ((finalGCTime - initGCTime) * 1000) << " ms to complete." << std::endl;
 	 csv << (finalGCTime - initGCTime) * 1000 << ", ";
+
+     // Output the destination matrix (mat is a cv::Mat located outside the function in a struct)
 	 mat = dst;
 
+     // Find the contours
      findContours (dst, colorMat, id.cannyGaussianDetectedEdges, colorMat, file);
      
-
 }
 
  /*
@@ -184,9 +196,15 @@ struct IMAGEDATA {
  */
  void normalizedCanny(std::ofstream &file, char * argv, cv::Mat &mat, std::ofstream &csv, cv::Mat & colorMat) {
 	 file << "Starting Canny w/Normalized Box Blur. Initial Time: ";
+
+     // Get initial time
 	 double initGCTime = (cv::getTickCount()) / (cv::getTickFrequency());
 	 file << initGCTime * 1000 << " ms" << std::endl;
+
+     // Convolve the greyscale image with a 3x3 Normalized Box Blur matrix and output to a detected-edges matrix
 	 cv::blur(id.currentFrameGry, id.cannyNormalizedDetectedEdges, cv::Size(3, 3));
+
+     // Use the Canny edge detector with the defined low threshold, ratio, and kernel
 	 cv::Canny(id.cannyNormalizedDetectedEdges, id.cannyNormalizedDetectedEdges, id.canny_lowThresh, id.canny_lowThresh * id.canny_Ratio, id.canny_Kernel);
 	 cv::Mat dst;
 	 dst = cv::Scalar::all(0);
@@ -901,84 +919,6 @@ Perform Sobel edge detection using Gaussian blur
 
 	 }
 
-	 /*
-	 cv::Mat normalizedCannyDet;
-	 bool isNCDone = false;
-	 std::thread normCanny(&normalizedCanny, std::ref(file), argv[i], std::ref(normalizedCannyDet), std::ref(csv));
-	 if (normCanny.joinable()) {
-		 normCanny.join();
-		 isNCDone = true;
-	 }
-
-	 if (!normalizedCannyDet.empty() || isNCDone == true) {
-		 std::vector<int> comp_params;
-		 comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
-		 comp_params.push_back(100);
-		 std::string im = argv[i];
-		 boost::filesystem::path image_path(im);
-		 if (boost::filesystem::exists(image_path)) {
-			 std::string imp = image_path.filename().generic_string();
-			 try {
-				 bool save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_normalized_box_" + imp, normalizedCannyDet, comp_params);
-				 cv::Mat normCannyInv;
-				 cv::bitwise_not(normalizedCannyDet, normCannyInv);
-				 save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_normalized_inv_" + imp, normCannyInv, comp_params);
-			 }
-			 catch (std::runtime_error& e) {
-				 appendErrorMessage(file, -3);
-				 fprintf(stderr, "Unable to write file due to: %s\n", e.what());
-			 }
-		 }
-	 }
-
-	 if (!normalizedCannyDet.empty()) {
-		 cv::namedWindow("Canny: Normalized Box", CV_WINDOW_NORMAL);
-		 cv::imshow("Canny: Normalized Box", gaborDet);
-		 cv::namedWindow("Canny: Normalized Box Inverted", CV_WINDOW_NORMAL);
-		 cv::Mat normalizeddCannyInv;
-		 cv::bitwise_not(normalizedCannyDet, normalizeddCannyInv);
-		 cv::imshow("Canny: Normalized Box Inverted", normalizeddCannyInv);
-	 }
-
-
-	 cv::Mat boxCannyDet;
-	 bool isBoxDone = false;
-	 std::thread boxCanny(&boxCanny, std::ref(file), argv[i], std::ref(boxCannyDet), std::ref(csv));
-	 if (boxCanny.joinable()) {
-		 boxCanny.join();
-		 isBoxDone = true;
-	 }
-
-	 if (!boxCannyDet.empty() || isBoxDone == true) {
-		 std::vector<int> comp_params;
-		 comp_params.push_back(CV_IMWRITE_JPEG_QUALITY);
-		 comp_params.push_back(100);
-		 std::string im = argv[i];
-		 boost::filesystem::path image_path(im);
-		 if (boost::filesystem::exists(image_path)) {
-			 std::string imp = image_path.filename().generic_string();
-			 try {
-				 bool save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_box_" + imp, boxCannyDet, comp_params);
-				 cv::Mat boxCannyInv;
-				 cv::bitwise_not(boxCannyDet, boxCannyInv);
-				 save = cv::imwrite("trial_" + std::to_string(trial) + "_canny_box_inv_" + imp, boxCannyInv, comp_params);
-			 }
-			 catch (std::runtime_error& e) {
-				 appendErrorMessage(file, -3);
-				 fprintf(stderr, "Unable to write file due to: %s\n", e.what());
-			 }
-		 }
-	 }
-
-	 if (!boxCannyDet.empty()) {
-		 cv::namedWindow("Canny: Box Filter", CV_WINDOW_NORMAL);
-		 cv::imshow("Canny: Box Filter", boxCannyDet);
-		 cv::namedWindow("Canny: Box Filter Inverted", CV_WINDOW_NORMAL);
-		 cv::Mat boxCannyInv;
-		 cv::bitwise_not(boxCannyDet, boxCannyInv);
-		 cv::imshow("Canny: Box Filter Inverted", boxCannyInv);
-	 }
-	 */
  }
 
  int main(int argc, char* argv[]) {

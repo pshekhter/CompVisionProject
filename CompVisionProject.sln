@@ -9,6 +9,10 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		GeneralDebug|x64 = GeneralDebug|x64
+		GeneralDebug|x86 = GeneralDebug|x86
+		GeneralRelease|x64 = GeneralRelease|x64
+		GeneralRelease|x86 = GeneralRelease|x86
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
@@ -17,6 +21,14 @@ Global
 		{368823BF-7982-4DD4-AD8F-1E999E668B65}.Debug|x64.Build.0 = Debug|x64
 		{368823BF-7982-4DD4-AD8F-1E999E668B65}.Debug|x86.ActiveCfg = Debug|Win32
 		{368823BF-7982-4DD4-AD8F-1E999E668B65}.Debug|x86.Build.0 = Debug|Win32
+		{368823BF-7982-4DD4-AD8F-1E999E668B65}.GeneralDebug|x64.ActiveCfg = GeneralDebug|x64
+		{368823BF-7982-4DD4-AD8F-1E999E668B65}.GeneralDebug|x64.Build.0 = GeneralDebug|x64
+		{368823BF-7982-4DD4-AD8F-1E999E668B65}.GeneralDebug|x86.ActiveCfg = GeneralDebug|Win32
+		{368823BF-7982-4DD4-AD8F-1E999E668B65}.GeneralDebug|x86.Build.0 = GeneralDebug|Win32
+		{368823BF-7982-4DD4-AD8F-1E999E668B65}.GeneralRelease|x64.ActiveCfg = GeneralRelease|x64
+		{368823BF-7982-4DD4-AD8F-1E999E668B65}.GeneralRelease|x64.Build.0 = GeneralRelease|x64
+		{368823BF-7982-4DD4-AD8F-1E999E668B65}.GeneralRelease|x86.ActiveCfg = GeneralRelease|Win32
+		{368823BF-7982-4DD4-AD8F-1E999E668B65}.GeneralRelease|x86.Build.0 = GeneralRelease|Win32
 		{368823BF-7982-4DD4-AD8F-1E999E668B65}.Release|x64.ActiveCfg = Release|x64
 		{368823BF-7982-4DD4-AD8F-1E999E668B65}.Release|x64.Build.0 = Release|x64
 		{368823BF-7982-4DD4-AD8F-1E999E668B65}.Release|x86.ActiveCfg = Release|Win32
